@@ -13,6 +13,8 @@ class SceneView: SKView {
     
     var actionComponentMap: [String: SKSpriteNode] = ["dragBallAction": SKSpriteNode.init(imageNamed: "circle"),"dragTriangleAction": SKSpriteNode.init(imageNamed: "triangle"), "dragCircleAction": SKSpriteNode.init(imageNamed: "triangle")]
     
+    var origin = SKSpriteNode.init(texture: SKTexture(imageNamed: "circle"), size: CGSize(width: 50, height: 50))
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
@@ -46,16 +48,18 @@ class SceneView: SKView {
         
         //Convert the window-based coordinate to a view-relative coordinate.
 //        let point = convert(sender.draggingLocation, from: nil)
-        let point = convert(sender.draggingLocation, to: self.scene!)
+        
+        let scene = self.scene!
+        let point = convert(sender.draggingLocation, to: scene)
 //                let point = sender.draggingLocation
         
         if let types = pasteBoard.types, types.contains(NSPasteboard.PasteboardType(rawValue: ComponentDrag.type)),
             let action = pasteBoard.string(forType: NSPasteboard.PasteboardType(rawValue: ComponentDrag.type)) {
 //            let sprite = actionComponentMap[action]!
 //            let copied = sprite.copy() as! SKSpriteNode
-            let copied = SKSpriteNode.init(imageNamed: "circle")
+            let copied = origin.copy() as! SKSpriteNode
             copied.position = point
-            self.scene?.addChild(copied)
+            scene.addChild(copied)
             //          delegate?.processAction(action, center:point)
             //            print(point)
             return true
