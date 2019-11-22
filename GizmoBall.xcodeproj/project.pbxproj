@@ -41,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		635566DB2387EB2C0003A276 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				639956B42386AE03009D424D /* ComponentView.swift */,
+				639956B62386B215009D424D /* SceneView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		639FBD682385A2D40011D5A2 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				639FBD8A2385A4420011D5A2 /* DataModels */,
+				635566DB2387EB2C0003A276 /* View */,
 				639FBD8C2385A44D0011D5A2 /* ViewControllers */,
 				639FBD8E2385A4830011D5A2 /* Resources */,
 				639FBD8D2385A4560011D5A2 /* Supporting FIles */,
@@ -74,8 +84,6 @@
 		639FBD8A2385A4420011D5A2 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				639956B42386AE03009D424D /* ComponentView.swift */,
-				639956B62386B215009D424D /* SceneView.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";

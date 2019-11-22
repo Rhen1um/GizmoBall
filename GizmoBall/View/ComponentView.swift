@@ -53,6 +53,8 @@ extension ComponentView: NSDraggingSource {
             pasteboardItem.setString("Drag"+componentType+"Action", forType: ComponentDrag.type)
             
             let draggingItem = NSDraggingItem(pasteboardWriter: pasteboardItem)
+//            var rect = self.bounds
+//            rect.size = CGSize(width: unit, height: unit)
             draggingItem.setDraggingFrame(self.bounds, contents: self.image)
             
             beginDraggingSession(with: [draggingItem], event: event, source: self)

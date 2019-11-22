@@ -18,6 +18,8 @@ class SceneView: SKView {
     
     var actionComponentMap: [String: SKSpriteNode] = [:]
     
+    let rect = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: unit, height: unit)))
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
@@ -42,13 +44,30 @@ class SceneView: SKView {
         let pasteBoard = sender.draggingPasteboard
         
         if let types = pasteBoard.types, acceptableTypes.intersection(types).count > 0 {
+            self.scene!.addChild(rect)
             return .copy
         }
         
         return NSDragOperation()
     }
     
+    override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
+        
+        let point = convert(sender.draggingLocation, to: self.scene!)
+        let computedPoint = CGPoint(x:floor((point.x+unit/2)/unit)*unit-unit/2, y: floor((point.y+unit/2)/unit)*unit-unit/2)
+
+        rect.position = computedPoint
+
+        return .copy
+    }
+    
+    override func draggingExited(_ sender: NSDraggingInfo?) {
+         rect.removeFromParent()
+    }
+    
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        rect.removeFromParent()
+        
         let pasteBoard = sender.draggingPasteboard
         let scene = self.scene!
         let point = convert(sender.draggingLocation, to: scene)
