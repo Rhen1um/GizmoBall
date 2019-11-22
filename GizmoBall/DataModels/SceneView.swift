@@ -9,11 +9,14 @@
 import Cocoa
 import SpriteKit
 
+let unit:CGFloat = 60.0
+
 class SceneView: SKView {
     
-    var actionComponentMap: [String: SKSpriteNode] = ["dragBallAction": SKSpriteNode.init(imageNamed: "circle"),"dragTriangleAction": SKSpriteNode.init(imageNamed: "triangle"), "dragCircleAction": SKSpriteNode.init(imageNamed: "triangle")]
+    lazy var circle = SKSpriteNode.init(texture: SKTexture(imageNamed: "circle"), size: CGSize(width: unit, height: unit))
+    lazy var triangle = SKSpriteNode.init(texture: SKTexture(imageNamed: "triangle"), size: CGSize(width: unit, height: unit))
     
-    var origin = SKSpriteNode.init(texture: SKTexture(imageNamed: "circle"), size: CGSize(width: 50, height: 50))
+    var actionComponentMap: [String: SKSpriteNode] = [:]
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -22,7 +25,7 @@ class SceneView: SKView {
     }
     
     // MARK: - NSDraggingDestination
-    var acceptableTypes: Set<NSPasteboard.PasteboardType> { return [NSPasteboard.PasteboardType.init(ComponentDrag.type)]  }
+    var acceptableTypes: Set<NSPasteboard.PasteboardType> { return [ComponentDrag.type]  }
     
     func setup() {
         registerForDraggedTypes(Array(acceptableTypes))
@@ -30,6 +33,8 @@ class SceneView: SKView {
     
     override func awakeFromNib() {
         setup()
+        actionComponentMap["DragCircleAction"] = circle
+        actionComponentMap["DragTriangleAction"] = triangle
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -45,23 +50,21 @@ class SceneView: SKView {
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         let pasteBoard = sender.draggingPasteboard
-        
-        //Convert the window-based coordinate to a view-relative coordinate.
-//        let point = convert(sender.draggingLocation, from: nil)
-        
         let scene = self.scene!
         let point = convert(sender.draggingLocation, to: scene)
-//                let point = sender.draggingLocation
+        print(point)
+        let computedPoint = CGPoint(x:floor((point.x+unit/2)/unit)*unit, y: floor((point.y+unit/2)/unit)*unit)
+        print(computedPoint)
         
-        if let types = pasteBoard.types, types.contains(NSPasteboard.PasteboardType(rawValue: ComponentDrag.type)),
-            let action = pasteBoard.string(forType: NSPasteboard.PasteboardType(rawValue: ComponentDrag.type)) {
-//            let sprite = actionComponentMap[action]!
-//            let copied = sprite.copy() as! SKSpriteNode
-            let copied = origin.copy() as! SKSpriteNode
-            copied.position = point
+        if let types = pasteBoard.types, types.contains(ComponentDrag.type),
+            let action = pasteBoard.string(forType: ComponentDrag.type) {
+            let sprite = actionComponentMap[action]!
+            let copied = sprite.copy() as! SKSpriteNode
+            copied.position = computedPoint
             scene.addChild(copied)
-            //          delegate?.processAction(action, center:point)
-            //            print(point)
+            
+            pasteBoard.setString("true", forType: NSPasteboard.PasteboardType(rawValue: "result"))
+            
             return true
         }
         return false

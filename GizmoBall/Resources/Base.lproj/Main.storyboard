@@ -734,7 +734,7 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5B-9X-PQI">
                                                                     <rect key="frame" x="0.0" y="190" width="250" height="70"/>
                                                                     <subviews>
-                                                                        <imageView identifier="Ball" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-6A-yDX" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="Triangle" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-6A-yDX" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="Wcb-cv-2wW"/>

@@ -14,7 +14,6 @@
 		639FBD7F2385A2D40011D5A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 639FBD7E2385A2D40011D5A2 /* Assets.xcassets */; };
 		639FBD822385A2D40011D5A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639FBD802385A2D40011D5A2 /* Main.storyboard */; };
 		63A959BE238788F0004D2F2D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63A959BD238788F0004D2F2D /* GameScene.sks */; };
-		63D12EB72387AED700AB5025 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D12EB62387AED700AB5025 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63D12EB72387AED700AB5025 /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
