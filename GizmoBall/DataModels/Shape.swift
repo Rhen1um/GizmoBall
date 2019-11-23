@@ -14,7 +14,5 @@ class Shape: GameComponent {
         self.init(location: location, texture: texture)
     }
     
-    override func makeAction(with otherComponent: GameComponent) {
-        
-    }
+
 }

@@ -15,7 +15,5 @@ class LeftBar: GameComponent {
         self.init(location: location, texture: SKTexture(imageNamed: ""))
     }
     
-    override func makeAction(with otherComponent: GameComponent) {
-        
-    }
+
 }

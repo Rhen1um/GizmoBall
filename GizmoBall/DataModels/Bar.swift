@@ -15,8 +15,9 @@ class Bar: GameComponent {
         self.init(location: location, texture: texture)
     }
     
-    override func makeAction(with otherComponent: GameComponent) {
-        
+    
+    public func restore() {
+        self.position = CGPoint(x: self.nodePosition.x * 60 - 30, y: self.nodePosition.y * 60 - 30)
     }
 }
 

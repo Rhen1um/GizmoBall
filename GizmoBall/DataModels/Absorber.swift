@@ -15,7 +15,7 @@ class Absorber: GameComponent {
         self.init(location: location, texture: SKTexture(imageNamed: ""))
     }
     
-    override func makeAction(with otherComponent: GameComponent) {
-        
+    override public func makeAction(with ball: Ball) {
+        ball.removeFromParent()
     }
 }

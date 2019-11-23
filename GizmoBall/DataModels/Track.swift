@@ -15,7 +15,7 @@ class Track: GameComponent {
         self.init(location: location, texture: texture)
     }
     
-    override func makeAction(with otherComponent: GameComponent) {
-        
+    override public func makeAction(with ball: Ball) {
+        ball.changeGravity()
     }
 }

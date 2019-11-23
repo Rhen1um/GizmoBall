@@ -19,27 +19,33 @@ class GameComponent: SKSpriteNode{
         self.yScale = 1
         self.nodeSize = 1
         self.position = location
-        self.nodePosition = CGPoint(x: (location.x - 30) / 60, y: (location.y - 30) / 60)
+        self.nodePosition = CGPoint(x: (location.x + 30) / 60, y: (location.y + 30) / 60)
         
         self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
-            physics.allowsRotation = true
-            physics.isDynamic = true
-            physics.linearDamping = 0.75
-            physics.angularDamping = 0.75
+            physics.allowsRotation = false
+            physics.isDynamic = false
         }
     }
     
     public func changePosition(newPoint: CGPoint) {
         self.nodePosition = newPoint
+        self.position = CGPoint(x: self.nodePosition.x * 60 - 30, y: self.nodePosition.y * 60 - 30)
+    }
+    
+    public func changePositionOnPlay(newPoint: CGPoint) {
+        self.position = newPoint
     }
     
     public func nodeRotate() {
+        self.zRotation = CGFloat(Double.pi / 2 * 3)
     }
     
     public func zoomIn() {
         self.nodeSize += 1
+        // 改变大小todo
+        
     }
     
     public func zoomOut() {
@@ -47,9 +53,10 @@ class GameComponent: SKSpriteNode{
             return
         }
         self.nodeSize -= 1
+        // 改变大小todo
     }
     
-    public func makeAction(with otherComponent: GameComponent) {
+    public func makeAction(with ball: Ball) {
         
     }
 }
