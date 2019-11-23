@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -723,7 +724,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i0F-pb-rpS">
-                                                <rect key="frame" x="18" y="677" width="115" height="33"/>
+                                                <rect key="frame" x="18" y="676" width="115" height="34"/>
                                                 <textFieldCell key="cell" alignment="left" title="ToolBox" id="Tc9-2H-Ij5">
                                                     <font key="font" metaFont="systemBold" size="30"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -731,7 +732,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Dqb-KH-ZuS">
-                                                <rect key="frame" x="18" y="650" width="90" height="19"/>
+                                                <rect key="frame" x="18" y="649" width="90" height="19"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Component" id="cuC-wB-pfM">
                                                     <font key="font" metaFont="systemBold" size="15"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -739,7 +740,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <box boxType="custom" cornerRadius="8" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="pUT-HO-vtW">
-                                                <rect key="frame" x="20" y="350" width="280" height="292"/>
+                                                <rect key="frame" x="20" y="349" width="280" height="292"/>
                                                 <view key="contentView" id="aJ3-uS-ZSc">
                                                     <rect key="frame" x="1" y="1" width="278" height="290"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -888,7 +889,7 @@
                                                 </view>
                                             </box>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="TEr-xd-D2N">
-                                                <rect key="frame" x="18" y="323" width="35" height="19"/>
+                                                <rect key="frame" x="18" y="322" width="35" height="19"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Tool" id="wBx-xP-OzC">
                                                     <font key="font" metaFont="systemBold" size="15"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -896,7 +897,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <box boxType="custom" cornerRadius="8" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Xjl-KW-Xvt" userLabel="Box2">
-                                                <rect key="frame" x="20" y="148" width="280" height="167"/>
+                                                <rect key="frame" x="20" y="147" width="280" height="167"/>
                                                 <view key="contentView" id="cts-fH-ZrR">
                                                     <rect key="frame" x="1" y="1" width="278" height="165"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1016,7 +1017,7 @@
                                                 </buttonCell>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="EUc-Ob-VB2">
-                                                <rect key="frame" x="47" y="63" width="226" height="60"/>
+                                                <rect key="frame" x="46" y="63" width="229" height="59"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Gizmo Ball" id="o8m-Iv-xV7">
                                                     <font key="font" metaFont="system" size="50"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

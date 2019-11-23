@@ -30,6 +30,7 @@ class SceneView: SKView {
     
     override func awakeFromNib() {
         setup()
+        hintRect.strokeColor = .blue
     }
     
     // MARK: - NSDraggingDestination
@@ -104,10 +105,10 @@ class SceneView: SKView {
 extension SceneView {
     // MARK: Helper functions
     func convertToHintRectPosition(point: CGPoint) -> CGPoint {
-        return CGPoint(x:floor((point.x+unit/2)/unit)*unit-unit/2, y: floor((point.y+unit/2)/unit)*unit-unit/2)
+        return CGPoint(x:floor((point.x)/unit)*unit, y: floor((point.y)/unit)*unit)
     }
     
     func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
-        return CGPoint(x:floor((point.x+unit/2)/unit)*unit, y: floor((point.y+unit/2)/unit)*unit)
+        return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
     }
 }
