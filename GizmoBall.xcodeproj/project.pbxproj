@@ -114,19 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				63FE60B823880F60005BFF99 /* GameScene.swift */,
-				5B5DC9402389137F00A55905 /* GameComponent.swift */,
-				5B5DC94223891C4E00A55905 /* Ball.swift */,
-				5B5DC94623891DCD00A55905 /* Absorber.swift */,
-				5B5DC94823891E6700A55905 /* Shape.swift */,
-				5B5DC94A23891EBE00A55905 /* Circle.swift */,
-				5B5DC94C23891EE600A55905 /* Triangle.swift */,
-				5B5DC94E23891EFC00A55905 /* Square.swift */,
-				5B5DC95023891F1F00A55905 /* Track.swift */,
-				5B5DC95223891F6100A55905 /* StraightTrack.swift */,
-				5B5DC95423891F8D00A55905 /* CurvedTrack.swift */,
-				5B5DC95623891FB400A55905 /* Bar.swift */,
-				5B5DC95823891FE200A55905 /* LeftBar.swift */,
-				5B5DC95A23891FFB00A55905 /* RigtheBar.swift */,
+				63EE556023898493008B34DD /* GameComponent */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -162,6 +150,50 @@
 				63D12EB62387AED700AB5025 /* SpriteKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63EE556023898493008B34DD /* GameComponent */ = {
+			isa = PBXGroup;
+			children = (
+				63EE5563238984CF008B34DD /* Track */,
+				63EE5562238984C6008B34DD /* Bar */,
+				63EE5561238984B4008B34DD /* Shape */,
+				5B5DC9402389137F00A55905 /* GameComponent.swift */,
+				5B5DC94623891DCD00A55905 /* Absorber.swift */,
+			);
+			path = GameComponent;
+			sourceTree = "<group>";
+		};
+		63EE5561238984B4008B34DD /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				5B5DC94223891C4E00A55905 /* Ball.swift */,
+				5B5DC94823891E6700A55905 /* Shape.swift */,
+				5B5DC94A23891EBE00A55905 /* Circle.swift */,
+				5B5DC94C23891EE600A55905 /* Triangle.swift */,
+				5B5DC94E23891EFC00A55905 /* Square.swift */,
+			);
+			path = Shape;
+			sourceTree = "<group>";
+		};
+		63EE5562238984C6008B34DD /* Bar */ = {
+			isa = PBXGroup;
+			children = (
+				5B5DC95623891FB400A55905 /* Bar.swift */,
+				5B5DC95823891FE200A55905 /* LeftBar.swift */,
+				5B5DC95A23891FFB00A55905 /* RigtheBar.swift */,
+			);
+			path = Bar;
+			sourceTree = "<group>";
+		};
+		63EE5563238984CF008B34DD /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				5B5DC95023891F1F00A55905 /* Track.swift */,
+				5B5DC95223891F6100A55905 /* StraightTrack.swift */,
+				5B5DC95423891F8D00A55905 /* CurvedTrack.swift */,
+			);
+			path = Track;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

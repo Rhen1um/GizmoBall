@@ -32,7 +32,7 @@ class GameScene: SKScene {
     }
     
     override func mouseDragged(with event: NSEvent) {
-        self.childNode(withName: "shape")?.position = event.location(in: self)
+        
     }
     
     
