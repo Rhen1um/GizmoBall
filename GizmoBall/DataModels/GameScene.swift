@@ -17,7 +17,7 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
+        drawTheGrid()
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -47,5 +47,30 @@ class GameScene: SKScene {
     func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
         node.position = point
         self.addChild(node)
+    }
+    
+    
+    func drawTheGrid() {
+        let width = self.size.width / 2;
+        let height = self.size.height / 2;
+        for x in stride(from: -width, to: width, by: 60){
+            let myLine = SKShapeNode()
+            let pathToDraw = CGMutablePath()
+            pathToDraw.move(to: CGPoint(x: x, y: height))
+            pathToDraw.addLine(to: CGPoint(x: x, y: -height))
+            myLine.path = pathToDraw
+            myLine.strokeColor = .white
+            self.addChild(myLine)
+        }
+        
+        for y in stride(from: -height, to: height, by: 60){
+            let myLine = SKShapeNode()
+            let pathToDraw = CGMutablePath()
+            pathToDraw.move(to: CGPoint(x: width , y: y))
+            pathToDraw.addLine(to: CGPoint(x: -width, y: y))
+            myLine.path = pathToDraw
+            myLine.strokeColor = .white
+            self.addChild(myLine)
+        }
     }
 }
