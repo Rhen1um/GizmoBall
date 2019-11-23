@@ -112,10 +112,6 @@ extension SceneView {
         return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
     }
     
-    func loadScene(from url:URL) {
-        
-    }
-    
     func saveScene(to url: URL) {
         saveSceneToFile(scene: self.scene as! GameScene, to: url)
     }

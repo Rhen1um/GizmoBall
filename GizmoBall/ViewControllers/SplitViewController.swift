@@ -14,7 +14,7 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
     
     @IBOutlet var skView: SceneView!
     
-    @IBAction func saveMenuItemClicked(_ sender: Any) {
+    @IBAction func saveDocument(_ sender: Any) {
         if let view = self.skView {
             guard let window = view.window else { return }
             
