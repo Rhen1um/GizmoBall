@@ -14,5 +14,4 @@ class Circle: Shape {
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: ""))
     }
-    
 }

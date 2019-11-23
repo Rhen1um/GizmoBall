@@ -9,10 +9,7 @@ import AppKit
 import SpriteKit
 
 class Shape: GameComponent {
-    
-    convenience init(location: CGPoint, texture: SKTexture) {
-        self.init(location: location, texture: texture)
+    override public func makeAction(with ball: Ball) {
+        
     }
-    
-
 }

@@ -10,14 +10,30 @@ import AppKit
 import SpriteKit
 
 class Bar: GameComponent {
-    
-    convenience init(location: CGPoint, texture: SKTexture) {
-        self.init(location: location, texture: texture)
+    public func moveLeft() {
+        self.changePositionOnPlay(newPoint: CGPoint(x: self.position.x - 30, y: self.position.y))
     }
     
-    
-    public func restore() {
-        self.position = CGPoint(x: self.nodePosition.x * 60 - 30, y: self.nodePosition.y * 60 - 30)
+    public func moveRight() {
+        self.changePositionOnPlay(newPoint: CGPoint(x: self.position.x + 30, y: self.position.y))
     }
+    
+    override public func zoomIn() {
+        self.position = CGPoint(x: self.position.x + 30, y: self.position.y)
+        self.xScale += 1
+        self.yScale += 1
+        self.nodeSize += 1
+    }
+       
+    override public func zoomOut() {
+        if(self.nodeSize == 1) {
+            return
+        }
+        self.position = CGPoint(x: self.position.x - 30, y: self.position.y)
+        self.xScale -= 1
+        self.yScale -= 1
+        self.nodeSize -= 1
+    }
+    
 }
 

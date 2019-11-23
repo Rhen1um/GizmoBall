@@ -15,6 +15,7 @@ class GameComponent: SKSpriteNode{
     
     convenience init(location: CGPoint, texture: SKTexture) {
         self.init(texture: texture)
+        self.size = CGSize(width: unit, height: unit)
         self.xScale = 1
         self.yScale = 1
         self.nodeSize = 1
@@ -38,22 +39,29 @@ class GameComponent: SKSpriteNode{
         self.position = newPoint
     }
     
+    public func restore() {
+        self.position = CGPoint(x: self.nodePosition.x * 60 - 30, y: self.nodePosition.y * 60 - 30)
+    }
+    
     public func nodeRotate() {
         self.zRotation = CGFloat(Double.pi / 2 * 3)
     }
     
     public func zoomIn() {
+        self.position = CGPoint(x: self.position.x + 30, y: self.position.y + 30)
+        self.xScale += 1
+        self.yScale += 1
         self.nodeSize += 1
-        // 改变大小todo
-        
     }
     
-    public func zoomOut() {
+    public func zoomOut() { 
         if(self.nodeSize == 1) {
             return
         }
+        self.position = CGPoint(x: self.position.x - 30, y: self.position.y - 30)
+        self.xScale -= 1
+        self.yScale -= 1
         self.nodeSize -= 1
-        // 改变大小todo
     }
     
     public func makeAction(with ball: Ball) {
