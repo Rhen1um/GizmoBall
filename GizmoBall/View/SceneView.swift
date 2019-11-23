@@ -30,7 +30,7 @@ class SceneView: SKView {
     
     override func awakeFromNib() {
         setup()
-        hintRect.strokeColor = .blue
+        hintRect.strokeColor = .red
     }
     
     // MARK: - NSDraggingDestination
@@ -110,5 +110,22 @@ extension SceneView {
     
     func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
         return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
+    }
+    
+    func loadScene(from url:URL) {
+        
+    }
+    
+    func saveScene(to url: URL) {
+        saveSceneToFile(scene: self.scene as! GameScene, to: url)
+    }
+    
+    private func saveSceneToFile(scene: GameScene, to url: URL) {
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: scene, requiringSecureCoding: false)
+            try data.write(to: url)
+        } catch {
+            print(error)
+        }
     }
 }

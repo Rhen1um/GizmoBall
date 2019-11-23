@@ -59,7 +59,7 @@ class GameScene: SKScene {
             pathToDraw.move(to: CGPoint(x: x, y: height))
             pathToDraw.addLine(to: CGPoint(x: x, y: -height))
             myLine.path = pathToDraw
-            myLine.strokeColor = .white
+            myLine.strokeColor = .gray
             self.addChild(myLine)
         }
         
@@ -69,8 +69,16 @@ class GameScene: SKScene {
             pathToDraw.move(to: CGPoint(x: width , y: y))
             pathToDraw.addLine(to: CGPoint(x: -width, y: y))
             myLine.path = pathToDraw
-            myLine.strokeColor = .white
+            myLine.strokeColor = .gray
             self.addChild(myLine)
+        }
+    }
+}
+
+extension GameScene {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
         }
     }
 }

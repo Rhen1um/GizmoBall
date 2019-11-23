@@ -77,6 +77,7 @@
 				639FBD8C2385A44D0011D5A2 /* ViewControllers */,
 				639FBD8E2385A4830011D5A2 /* Resources */,
 				639FBD8D2385A4560011D5A2 /* Supporting FIles */,
+				639FBD742385A2D40011D5A2 /* AppDelegate.swift */,
 				639FBD832385A2D40011D5A2 /* Info.plist */,
 				639FBD842385A2D40011D5A2 /* GizmoBall.entitlements */,
 			);
@@ -102,7 +103,6 @@
 		639FBD8D2385A4560011D5A2 /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
-				639FBD742385A2D40011D5A2 /* AppDelegate.swift */,
 			);
 			path = "Supporting FIles";
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 				CODE_SIGN_ENTITLEMENTS = GizmoBall/GizmoBall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = FNBD2YDG2A;
+				DEVELOPMENT_TEAM = XKUVHTJ3W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GizmoBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -359,7 +359,7 @@
 				CODE_SIGN_ENTITLEMENTS = GizmoBall/GizmoBall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = FNBD2YDG2A;
+				DEVELOPMENT_TEAM = XKUVHTJ3W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GizmoBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
