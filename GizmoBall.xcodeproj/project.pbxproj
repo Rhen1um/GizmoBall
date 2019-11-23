@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B5DC9412389137F00A55905 /* GameComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC9402389137F00A55905 /* GameComponent.swift */; };
+		5B5DC94323891C4E00A55905 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC94223891C4E00A55905 /* Ball.swift */; };
+		5B5DC94723891DCD00A55905 /* Absorber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC94623891DCD00A55905 /* Absorber.swift */; };
+		5B5DC94923891E6700A55905 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC94823891E6700A55905 /* Shape.swift */; };
+		5B5DC94B23891EBE00A55905 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC94A23891EBE00A55905 /* Circle.swift */; };
+		5B5DC94D23891EE600A55905 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC94C23891EE600A55905 /* Triangle.swift */; };
+		5B5DC94F23891EFC00A55905 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC94E23891EFC00A55905 /* Square.swift */; };
+		5B5DC95123891F1F00A55905 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95023891F1F00A55905 /* Track.swift */; };
+		5B5DC95323891F6100A55905 /* StraightTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95223891F6100A55905 /* StraightTrack.swift */; };
+		5B5DC95523891F8D00A55905 /* CurvedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95423891F8D00A55905 /* CurvedTrack.swift */; };
+		5B5DC95723891FB400A55905 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95623891FB400A55905 /* Bar.swift */; };
+		5B5DC95923891FE200A55905 /* LeftBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95823891FE200A55905 /* LeftBar.swift */; };
+		5B5DC95B23891FFB00A55905 /* RigtheBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95A23891FFB00A55905 /* RigtheBar.swift */; };
 		639956B52386AE03009D424D /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639956B42386AE03009D424D /* ComponentView.swift */; };
 		639956B72386B215009D424D /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639956B62386B215009D424D /* SceneView.swift */; };
 		639FBD752385A2D40011D5A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639FBD742385A2D40011D5A2 /* AppDelegate.swift */; };
@@ -18,6 +31,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B5DC9402389137F00A55905 /* GameComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameComponent.swift; sourceTree = "<group>"; };
+		5B5DC94223891C4E00A55905 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		5B5DC94623891DCD00A55905 /* Absorber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absorber.swift; sourceTree = "<group>"; };
+		5B5DC94823891E6700A55905 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		5B5DC94A23891EBE00A55905 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		5B5DC94C23891EE600A55905 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		5B5DC94E23891EFC00A55905 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		5B5DC95023891F1F00A55905 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		5B5DC95223891F6100A55905 /* StraightTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StraightTrack.swift; sourceTree = "<group>"; };
+		5B5DC95423891F8D00A55905 /* CurvedTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedTrack.swift; sourceTree = "<group>"; };
+		5B5DC95623891FB400A55905 /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		5B5DC95823891FE200A55905 /* LeftBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBar.swift; sourceTree = "<group>"; };
+		5B5DC95A23891FFB00A55905 /* RigtheBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RigtheBar.swift; sourceTree = "<group>"; };
 		639956B42386AE03009D424D /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		639956B62386B215009D424D /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		639FBD712385A2D40011D5A2 /* GizmoBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GizmoBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +114,19 @@
 			isa = PBXGroup;
 			children = (
 				63FE60B823880F60005BFF99 /* GameScene.swift */,
+				5B5DC9402389137F00A55905 /* GameComponent.swift */,
+				5B5DC94223891C4E00A55905 /* Ball.swift */,
+				5B5DC94623891DCD00A55905 /* Absorber.swift */,
+				5B5DC94823891E6700A55905 /* Shape.swift */,
+				5B5DC94A23891EBE00A55905 /* Circle.swift */,
+				5B5DC94C23891EE600A55905 /* Triangle.swift */,
+				5B5DC94E23891EFC00A55905 /* Square.swift */,
+				5B5DC95023891F1F00A55905 /* Track.swift */,
+				5B5DC95223891F6100A55905 /* StraightTrack.swift */,
+				5B5DC95423891F8D00A55905 /* CurvedTrack.swift */,
+				5B5DC95623891FB400A55905 /* Bar.swift */,
+				5B5DC95823891FE200A55905 /* LeftBar.swift */,
+				5B5DC95A23891FFB00A55905 /* RigtheBar.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -196,11 +235,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5DC94F23891EFC00A55905 /* Square.swift in Sources */,
 				63FE60B923880F60005BFF99 /* GameScene.swift in Sources */,
+				5B5DC94723891DCD00A55905 /* Absorber.swift in Sources */,
+				5B5DC95323891F6100A55905 /* StraightTrack.swift in Sources */,
+				5B5DC9412389137F00A55905 /* GameComponent.swift in Sources */,
 				639956B52386AE03009D424D /* ComponentView.swift in Sources */,
+				5B5DC95B23891FFB00A55905 /* RigtheBar.swift in Sources */,
+				5B5DC94923891E6700A55905 /* Shape.swift in Sources */,
+				5B5DC94B23891EBE00A55905 /* Circle.swift in Sources */,
 				639FBD7D2385A2D40011D5A2 /* SplitViewController.swift in Sources */,
+				5B5DC95723891FB400A55905 /* Bar.swift in Sources */,
+				5B5DC95523891F8D00A55905 /* CurvedTrack.swift in Sources */,
+				5B5DC94D23891EE600A55905 /* Triangle.swift in Sources */,
 				639FBD752385A2D40011D5A2 /* AppDelegate.swift in Sources */,
+				5B5DC95123891F1F00A55905 /* Track.swift in Sources */,
+				5B5DC94323891C4E00A55905 /* Ball.swift in Sources */,
 				639956B72386B215009D424D /* SceneView.swift in Sources */,
+				5B5DC95923891FE200A55905 /* LeftBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
