@@ -47,6 +47,9 @@ class GameComponent: SKSpriteNode{
     }
     
     public func zoomIn() {
+        if(self.xScale == 3) {
+            return
+        }
         self.position = CGPoint(x: self.position.x + 30, y: self.position.y + 30)
         self.xScale += 1
         self.yScale += 1

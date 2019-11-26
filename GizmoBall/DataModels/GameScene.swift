@@ -34,8 +34,10 @@ class GameScene: SKScene {
             if newValue != nil {
                 // 如果选中物体，移动选中提示框
                 hintRect.isHidden = false
-                hintRect.position = CGPoint(x: newValue!.position.x-unit/2, y: newValue!.position.y-unit/2)
+                hintRect.setScale(newValue!.xScale)
+//                hintRect.position = CGPoint(x: newValue!.position.x-unit/2, y: newValue!.position.y-unit/2)
             } else {
+                hintRect.setScale(1)
                 hintRect.isHidden = true
             }
             _selectedComponent = newValue
@@ -65,7 +67,9 @@ class GameScene: SKScene {
         drawTheGrid()
         // 注册选中提示框
         self.physicsWorld.contactDelegate = self
-        self.addChild(hintRect)
+        if !self.children.contains(hintRect) {
+            self.addChild(hintRect)
+        }
         hintRect.strokeColor = .yellow
         hintRect.isHidden = true
     }
@@ -77,6 +81,7 @@ class GameScene: SKScene {
             self.selectedComponent = nil
             return
         }
+//        hintRect.position = selectedComponent.position
         self.selectedComponent = selectedComponent
     }
     
@@ -186,12 +191,14 @@ class GameScene: SKScene {
     func zoomOutSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.zoomOut()
+            HintRectHelper.zoomOut(hintRect: hintRect)
         }
     }
     
     func zoomInSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.zoomIn()
+            HintRectHelper.zoomIn(hintRect: hintRect)
         }
     }
     

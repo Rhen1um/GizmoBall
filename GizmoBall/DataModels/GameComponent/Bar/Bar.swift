@@ -19,6 +19,9 @@ class Bar: GameComponent {
     }
     
     override public func zoomIn() {
+        if(self.xScale == 3) {
+            return
+        }
         self.position = CGPoint(x: self.position.x + 30, y: self.position.y)
         self.xScale += 1
     }

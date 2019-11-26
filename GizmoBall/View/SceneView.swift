@@ -20,6 +20,7 @@ class SceneView: SKView {
         get {
             let scene = self.scene as! GameScene
             scene.hintRect.isHidden = false
+            scene.hintRect.setScale(1)
             return scene.hintRect
         }
     }
