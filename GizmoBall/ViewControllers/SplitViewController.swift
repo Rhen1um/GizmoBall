@@ -21,6 +21,42 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
         
         createNewScene(presentTo: skView)
     }
+    
+    // MARK: Button Actions
+    @IBAction func rotateButtonClicked(_ sender: Any) {
+        if let scene = self.scene {
+            scene.rotateSelectedComponent()
+        }
+    }
+    @IBAction func removeButtonClicked(_ sender: Any) {
+        if let scene = self.scene {
+            scene.removeSelectedComponent()
+        }
+    }
+    
+    @IBAction func zoomOutButtonClicked(_ sender: Any) {
+        if let scene = self.scene {
+            scene.zoomOutSelectedComponent()
+        }
+    }
+    
+    @IBAction func zoomInButtonClicked(_ sender: Any) {
+        if let scene = self.scene {
+            scene.zoomInSelectedComponent()
+        }
+    }
+    
+    @IBAction func playButtonClicked(_ sender: Any) {
+        if let scene = self.scene {
+            scene.Play()
+        }
+    }
+    
+    @IBAction editButtonClicked(_ sender: Any) {
+        if let scene = self.scene {
+            scene.Edit()
+        }
+    }
 }
 
 extension SplitViewController {
