@@ -19,6 +19,8 @@ class RightBar: Bar {
             physics.allowsRotation = false
             physics.isDynamic = false
         }
+        
+        self.name = "RightBar"
     }
     
 

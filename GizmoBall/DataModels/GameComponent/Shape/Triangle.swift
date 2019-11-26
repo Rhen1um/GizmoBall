@@ -13,7 +13,10 @@ class Triangle: GameComponent {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "triangle"))
-        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle"), size: self.size)
+        let path = CGMutablePath()
+        path.addLines(between: [CGPoint(x: -30, y: 30), CGPoint(x: 30, y: -30), CGPoint(x: -30, y: -30), CGPoint(x: -30, y: 30)])
+        path.closeSubpath()
+        self.physicsBody = SKPhysicsBody(polygonFrom: path)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
