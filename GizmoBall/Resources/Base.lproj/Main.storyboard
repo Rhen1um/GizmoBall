@@ -370,7 +370,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="zoomOutButtonClicked:" target="8m3-gp-Vzr" id="jUv-Sp-5mZ"/>
+                                                                                <action selector="zoomInButtonClicked:" target="8m3-gp-Vzr" id="5b6-8j-ruy"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Z5s-qM-H7D">
@@ -384,7 +384,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="zoomInButtonClicked:" target="8m3-gp-Vzr" id="Gkj-f2-otL"/>
+                                                                                <action selector="zoomOutButtonClicked:" target="8m3-gp-Vzr" id="i9Q-eb-tug"/>
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
