@@ -106,7 +106,7 @@ class GameScene: SKScene {
 //            physics.isDynamic = true
 //            physics.allowsRotation = true
 //        }
-        self.ball.startPlay()
+        self.ball?.startPlay()
     }
     
 }
