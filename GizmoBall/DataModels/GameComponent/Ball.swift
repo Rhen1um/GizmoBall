@@ -18,7 +18,9 @@ class Ball: GameComponent {
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.isDynamic = false
-            physics.categoryBitMask = 
+            physics.categoryBitMask = PhysicsCategory.ball
+            physics.contactTestBitMask = PhysicsCategory.track + PhysicsCategory.absorber
+            
         }
 
     }

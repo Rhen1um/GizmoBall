@@ -13,7 +13,7 @@ class Triangle: GameComponent {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "triangle"))
-        self.physicsBody = SKPhysicsBody(
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle"), size: self.size)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
