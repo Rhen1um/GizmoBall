@@ -102,8 +102,7 @@
 				635566DB2387EB2C0003A276 /* View */,
 				639FBD8C2385A44D0011D5A2 /* ViewControllers */,
 				639FBD8E2385A4830011D5A2 /* Resources */,
-				639FBD8D2385A4560011D5A2 /* Supporting FIles */,
-				639FBD742385A2D40011D5A2 /* AppDelegate.swift */,
+				639FBD8D2385A4560011D5A2 /* Other Stuff */,
 				639FBD832385A2D40011D5A2 /* Info.plist */,
 				639FBD842385A2D40011D5A2 /* GizmoBall.entitlements */,
 			);
@@ -127,11 +126,12 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		639FBD8D2385A4560011D5A2 /* Supporting FIles */ = {
+		639FBD8D2385A4560011D5A2 /* Other Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				639FBD742385A2D40011D5A2 /* AppDelegate.swift */,
 			);
-			path = "Supporting FIles";
+			path = "Other Stuff";
 			sourceTree = "<group>";
 		};
 		639FBD8E2385A4830011D5A2 /* Resources */ = {

@@ -14,8 +14,20 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
     
     @IBOutlet var skView: SceneView!
     
+    var scene: SKScene?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        createNewScene(presentTo: skView)
+    }
+}
+
+extension SplitViewController {
+    // MARK: Scene Manager
+    
     @IBAction func saveDocument(_ sender: Any) {
-        if let view = self.skView {
+        if let view = self.skView, let scene = self.scene {
             guard let window = view.window else { return }
             
             let panel = NSSavePanel()
@@ -23,30 +35,29 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
             
             panel.beginSheetModal(for: window) { (result) in
                 if result == NSApplication.ModalResponse.OK {
-                    if let view = self.skView {
-                        self.saveScene(of: view, to: panel.url!)
-                    }
+                    self.save(scene: scene, of: view, to: panel.url!)
                 }
             }
         }
     }
     
     @IBAction func openDocument(_ sender: Any?) {
-        guard let window = view.window else { return }
-        
-        let panel = NSOpenPanel()
-        panel.canChooseFiles = true
-        panel.canChooseDirectories = false
-        panel.allowsMultipleSelection = false
-        panel.allowedFileTypes = ["gizmo"]
-        
-        panel.beginSheetModal(for: window) { (result) in
-            if result == NSApplication.ModalResponse.OK {
-                let url = panel.urls[0]
-                if let view = self.skView {
-                    self.loadScene(from: url, presentTo: view)
+        if let view = self.skView {
+            guard let window = view.window else { return }
+            
+            let panel = NSOpenPanel()
+            panel.canChooseFiles = true
+            panel.canChooseDirectories = false
+            panel.allowsMultipleSelection = false
+            panel.allowedFileTypes = ["gizmo"]
+            
+            panel.beginSheetModal(for: window) { (result) in
+                if result == NSApplication.ModalResponse.OK {
+                    let url = panel.urls[0]
+                    self.load(scene: self.scene, from: url, presentTo: view)
                 }
             }
+            
         }
     }
     
@@ -56,45 +67,38 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let view = self.skView {
-            //Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                // Present the scene
-                view.presentScene(scene)
-            }
-            view.ignoresSiblingOrder = true
+    func createNewScene(presentTo view: SceneView) {
+        if let view = skView , let scene = SKScene(fileNamed: "GameScene") {
+            
+            scene.scaleMode = .aspectFill
+            
+            view.presentScene(scene)
+            
+            self.scene = scene
         }
     }
-}
-
-extension SplitViewController {
-    // MARK: Scene Manager
-    func loadScene(from url :URL, presentTo view: SceneView) {
+    
+    func load(scene: SKScene?, from url :URL, presentTo view: SceneView) {
         do{
             let sceneData = try Data(contentsOf: url)
             let scene = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [GameScene.self, SKCameraNode.self], from: sceneData) as! GameScene
             scene.scaleMode = .aspectFit
             view.presentScene(scene)
+            
+            self.scene = scene
         } catch {
             print(error)
         }
     }
     
-    func createNewScene(presentTo view: SceneView) {
-        if let scene = SKScene(fileNamed: "GameScene") {
-            // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
-            // Present the scene
-            view.presentScene(scene)
+    func save(scene: SKScene?, of view: SceneView, to url: URL) {
+        if let scene = self.scene {
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: scene, requiringSecureCoding: false)
+                try data.write(to: url)
+            } catch {
+                print(error)
+            }
         }
-    }
-    
-    func saveScene(of view: SceneView, to url: URL) {
-        view.saveScene(to: url)
     }
 }

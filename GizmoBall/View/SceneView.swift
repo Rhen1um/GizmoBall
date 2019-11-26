@@ -25,7 +25,6 @@ class SceneView: SKView {
     // Default method. Do no care about it
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
     }
     
     override func awakeFromNib() {
@@ -110,18 +109,5 @@ extension SceneView {
     
     func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
         return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
-    }
-    
-    func saveScene(to url: URL) {
-        saveSceneToFile(scene: self.scene as! GameScene, to: url)
-    }
-    
-    private func saveSceneToFile(scene: GameScene, to url: URL) {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: scene, requiringSecureCoding: false)
-            try data.write(to: url)
-        } catch {
-            print(error)
-        }
     }
 }
