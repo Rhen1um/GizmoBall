@@ -13,15 +13,14 @@ class StraightTrack: Track {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "straightTrack"))
-        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2)
-        if let physics = self.physicsBody {
-            physics.affectedByGravity = false
-            physics.allowsRotation = false
-            physics.isDynamic = false
-        }
         self.name = "StraightTrack"
         super.lineNodes = LineNodes()
-        super.lineNodes?.upLine.isHidden = true
+        self.addChild(super.lineNodes!.leftLine)
+        self.addChild(super.lineNodes!.rightLine)
+        self.addChild(super.lineNodes!.upLine)
+        self.addChild(super.lineNodes!.downLine)
+        super.lineNodes?.leftLine.physicsBody?.categoryBitMask = PhysicsCategory.track
+        super.lineNodes?.rightLine.physicsBody?.categoryBitMask = PhysicsCategory.track
     }
     
 

@@ -13,7 +13,7 @@ class Ball: GameComponent {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "ball"))
-        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2 - 1)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
@@ -23,6 +23,7 @@ class Ball: GameComponent {
             physics.contactTestBitMask = PhysicsCategory.absorber
             physics.usesPreciseCollisionDetection = true
             
+//            physics.collisionBitMask = 0x0
         }
         self.name = "Ball"
     }
