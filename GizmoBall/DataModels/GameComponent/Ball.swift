@@ -13,15 +13,18 @@ class Ball: GameComponent {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "ball"))
-        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2 - 1)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2 - 2)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
+            physics.restitution = 1
             // new
             physics.isDynamic = true
             physics.categoryBitMask = PhysicsCategory.ball
-            physics.contactTestBitMask = PhysicsCategory.absorber
+            physics.contactTestBitMask = PhysicsCategory.absorber | PhysicsCategory.track
             physics.usesPreciseCollisionDetection = true
+            // update
+            physics.collisionBitMask = PhysicsCategory.ball
             
 //            physics.collisionBitMask = 0x0
         }

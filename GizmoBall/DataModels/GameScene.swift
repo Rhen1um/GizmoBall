@@ -10,10 +10,11 @@ import SpriteKit
 //import GameplayKit
 
 struct PhysicsCategory {
+    static let none: UInt32 = 0
     static let all: UInt32 = UINT32_MAX
     static let ball: UInt32 = 0b1
     static let absorber: UInt32 = 0b10
-    static let track : UInt32 = 0
+    static let track : UInt32 = 0b100
 }
 
 
@@ -216,24 +217,6 @@ class GameScene: SKScene {
     
     func presentGameOverScene() {
         let reveal = SKTransition.flipVertical(withDuration: 0.5)
-//        let message = "Game Over!"
-//
-//        let label = SKLabelNode(fontNamed: "Chalkduster")
-//
-//        label.text = message
-//        label.fontSize = 80
-//        label.fontColor = .white
-//        label.position = CGPoint(x: 0, y: 0)
-//
-//        self.run(SKAction.sequence([
-//            SKAction.run {
-//                self.addChild(label)
-//            },
-//            SKAction.wait(forDuration: 1.5),
-//            SKAction.run{
-//                label.removeFromParent()
-//            }
-//            ]))
         let currentScene = self
         let gameoverScene = GameOverScene(size: self.size, scene: currentScene)
         self.view?.presentScene(gameoverScene, transition: reveal)
@@ -280,18 +263,16 @@ extension GameScene : SKPhysicsContactDelegate{
             secondBody = contact.bodyA
         }
         
-        if firstBody.categoryBitMask == 0 {
-            if let ball = secondBody.node as? Ball {
-                ball.changeGravity()
-            }
-        }
-        
         if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
-            if let node = secondBody.node as? GameComponent,
-                let ball = firstBody.node as? Ball{
-                node.makeAction(with: ball)
-                if node is Absorber {
-                    self.presentGameOverScene()
+            if let ball = firstBody.node as? Ball{
+                if let node = secondBody.node as? SKShapeNode{
+                    ball.changeGravity()
+                    print(ball.physicsBody?.affectedByGravity as Any)
+                } else if let node = secondBody.node as? GameComponent{
+                        node.makeAction(with: ball)
+                        if node is Absorber {
+                                self.presentGameOverScene()
+                        }
                 }
             }
         }

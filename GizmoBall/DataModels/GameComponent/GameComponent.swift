@@ -43,7 +43,8 @@ class GameComponent: SKSpriteNode{
     }
     
     public func nodeRotate() {
-        self.zRotation = CGFloat(Double.pi / 2 * 3)
+        self.zRotation -= CGFloat(Double.pi / 2)
+//        self.zRotation = CGFloat(Double.pi / 2 * 3)
     }
     
     public func zoomIn() {

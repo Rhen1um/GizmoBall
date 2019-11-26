@@ -14,7 +14,7 @@ class RightBar: Bar {
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "bar"))
         let path = CGMutablePath()
-        path.addLines(between: [CGPoint(x: -30, y: -30), CGPoint(x: 30, y: -30)])
+        path.addLines(between: [CGPoint(x: -30, y: -30), CGPoint(x: 30, y: -30), CGPoint(x: 30, y: -25), CGPoint(x: -30, y: -25), CGPoint(x: -30, y: -30)])
         path.closeSubpath()
         self.physicsBody = SKPhysicsBody(polygonFrom: path)
         if let physics = self.physicsBody {
