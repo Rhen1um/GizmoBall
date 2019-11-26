@@ -24,6 +24,7 @@ class Absorber: GameComponent {
             physics.categoryBitMask = PhysicsCategory.absorber
             physics.contactTestBitMask = PhysicsCategory.ball
         }
+        self.name = "Absorber"
     }
     
     override public func makeAction(with ball: Ball) {
