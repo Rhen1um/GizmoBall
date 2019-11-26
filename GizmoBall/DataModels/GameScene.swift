@@ -20,10 +20,16 @@ struct PhysicsCategory {
 
 class GameScene: SKScene {
     private var _ball: Ball?
-    private var selectComponent: GameComponent?
+    private var selectedComponent: GameComponent?
+    private var leftBar: LeftBar?
+    private var rightBar: RightBar?
+    
     
     var ball: Ball? {
         get {
+            if _ball == nil {
+                _ball = self.childNode(withName: "Ball") as? Ball
+            }
             return _ball
         }
         set {
@@ -57,11 +63,32 @@ class GameScene: SKScene {
     
     
     override func keyDown(with event: NSEvent) {
-//        switch event.keyCode {
-//        case 0x31:
-//        default:
-//            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
-//        }
+        if (leftBar == nil){
+            leftBar = self.childNode(withName: "LeftBar") as? LeftBar
+        }
+        if (rightBar == nil){
+            rightBar = self.childNode(withName: "RightBar") as? RightBar
+        }
+        switch event.keyCode {
+        case 0x7B:
+            if let rightBar = self.rightBar {
+                rightBar.moveLeft()
+            }
+        case 0x7C:
+            if let rightBar = self.rightBar {
+                rightBar.moveRight()
+            }
+        case 0x00:
+            if let leftBar = self.leftBar {
+                leftBar.moveLeft()
+            }
+        case 0x02:
+            if let leftBar = self.leftBar {
+                leftBar.moveRight()
+            }
+        default:
+            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
+        }
     }
     
     
