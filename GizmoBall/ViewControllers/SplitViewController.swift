@@ -24,7 +24,7 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
 }
 
 extension SplitViewController {
-    // MARK: Scene Manager
+    // MARK: Create & Save & Load Scene
     
     @IBAction func saveDocument(_ sender: Any) {
         if let view = self.skView, let scene = self.scene {
