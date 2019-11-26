@@ -60,7 +60,6 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         drawTheGrid()
-        
         // 注册选中提示框
         self.addChild(hintRect)
         hintRect.strokeColor = .yellow
@@ -186,4 +185,24 @@ extension GameScene {
     }
 }
 
+extension GameScene : SKPhysicsContactDelegate{
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask{
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
+            if let node = secondBody.node as? GameComponent,
+                let ball = firstBody.node as? Ball{
+                node.makeAction(with: ball)
+            }
+        }
+    }
+}
 
