@@ -36,11 +36,10 @@ class GameScene: SKScene {
         }
     }
     
-    private var _ball: Ball?
-    private var selectedComponent: GameComponent?
     private var leftBar: LeftBar?
     private var rightBar: RightBar?
     
+    private var _ball: Ball?
     
     var ball: Ball? {
         get {
