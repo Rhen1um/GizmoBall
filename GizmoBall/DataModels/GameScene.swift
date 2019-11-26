@@ -45,9 +45,6 @@ class GameScene: SKScene {
     
     var ball: Ball? {
         get {
-            if _ball == nil {
-                _ball = self.childNode(withName: "Ball") as? Ball
-            }
             return _ball
         }
         set {
@@ -71,12 +68,12 @@ class GameScene: SKScene {
     }
     
     override func mouseDown(with event: NSEvent) {
-//        guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
-//            // 如果没选中，那么不显示选中提示框
-//            hintRect.isHidden = true
-//            return
-//        }
-//        self.selectedComponent = selectedComponent
+        guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
+            // 如果没选中，那么不显示选中提示框
+            hintRect.isHidden = true
+            return
+        }
+        self.selectedComponent = selectedComponent
     }
     
     override func mouseDragged(with event: NSEvent) {
