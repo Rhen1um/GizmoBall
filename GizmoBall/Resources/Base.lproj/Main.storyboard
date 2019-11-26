@@ -123,14 +123,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1281" height="720"/>
                                 <subviews>
                                     <view id="m2S-Jp-Qdl" customClass="SceneView" customModule="GizmoBall" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="720"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="960" height="720"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="720" id="opq-hf-Cr8"/>
                                         </constraints>
                                     </view>
                                     <visualEffectView autoresizesSubviews="NO" canDrawConcurrently="YES" blendingMode="behindWindow" material="sidebar" state="followsWindowActiveState" id="596-1e-aaa">
-                                        <rect key="frame" x="873" y="0.0" width="408" height="720"/>
+                                        <rect key="frame" x="961" y="0.0" width="320" height="720"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i0F-pb-rpS">
@@ -150,13 +150,13 @@
                                                 </textFieldCell>
                                             </textField>
                                             <box boxType="custom" cornerRadius="8" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="pUT-HO-vtW">
-                                                <rect key="frame" x="20" y="349" width="368" height="292"/>
+                                                <rect key="frame" x="20" y="349" width="280" height="292"/>
                                                 <view key="contentView" id="aJ3-uS-ZSc">
-                                                    <rect key="frame" x="1" y="1" width="366" height="290"/>
+                                                    <rect key="frame" x="1" y="1" width="278" height="290"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="DFl-Ba-7zI">
-                                                            <rect key="frame" x="58" y="20" width="250" height="250"/>
+                                                            <rect key="frame" x="14" y="20" width="250" height="250"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="I5B-9X-PQI">
                                                                     <rect key="frame" x="0.0" y="180" width="250" height="70"/>
@@ -307,13 +307,13 @@
                                                 </textFieldCell>
                                             </textField>
                                             <box boxType="custom" cornerRadius="8" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Xjl-KW-Xvt" userLabel="Box2">
-                                                <rect key="frame" x="20" y="147" width="368" height="167"/>
+                                                <rect key="frame" x="20" y="147" width="280" height="167"/>
                                                 <view key="contentView" id="cts-fH-ZrR">
-                                                    <rect key="frame" x="1" y="1" width="366" height="165"/>
+                                                    <rect key="frame" x="1" y="1" width="278" height="165"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="25" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zXI-Fw-Kfr">
-                                                            <rect key="frame" x="59" y="20" width="248" height="125"/>
+                                                            <rect key="frame" x="15" y="20" width="248" height="125"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="148" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQQ-50-73q">
                                                                     <rect key="frame" x="0.0" y="75" width="248" height="50"/>
@@ -329,7 +329,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="rotateButtonClicked:" target="8m3-gp-Vzr" id="KOP-B0-Hh6"/>
+                                                                                <action selector="rotateButtonClicked:" target="8m3-gp-Vzr" id="4gG-jU-PNK"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="5Be-p4-lTX">
@@ -343,7 +343,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="removeButtonClicked:" target="8m3-gp-Vzr" id="hC2-cG-vta"/>
+                                                                                <action selector="removeButtonClicked:" target="8m3-gp-Vzr" id="ZwI-C8-v91"/>
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
@@ -370,7 +370,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="zoomOutButtonClicked:" target="8m3-gp-Vzr" id="BhL-Bf-4PZ"/>
+                                                                                <action selector="zoomOutButtonClicked:" target="8m3-gp-Vzr" id="jUv-Sp-5mZ"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Z5s-qM-H7D">
@@ -384,7 +384,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="zoomInButtonClicked:" target="8m3-gp-Vzr" id="gOg-KC-bYc"/>
+                                                                                <action selector="zoomInButtonClicked:" target="8m3-gp-Vzr" id="Gkj-f2-otL"/>
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
@@ -428,11 +428,11 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="playButtonClicked:" target="8m3-gp-Vzr" id="ceF-DJ-FR4"/>
+                                                    <action selector="playButtonClicked:" target="8m3-gp-Vzr" id="X6H-4e-cLb"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eeA-vw-bPv">
-                                                <rect key="frame" x="268" y="19" width="100" height="19"/>
+                                                <rect key="frame" x="180" y="19" width="100" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="d0i-HU-WOG"/>
                                                 </constraints>
@@ -441,11 +441,11 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="editButtonClicked:" target="8m3-gp-Vzr" id="f5T-Z5-lfy"/>
+                                                    <action selector="editButtonClicked:" target="8m3-gp-Vzr" id="w2S-vl-asg"/>
                                                 </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="EUc-Ob-VB2">
-                                                <rect key="frame" x="90" y="63" width="229" height="59"/>
+                                                <rect key="frame" x="46" y="63" width="229" height="59"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Gizmo Ball" id="o8m-Iv-xV7">
                                                     <font key="font" metaFont="system" size="50"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

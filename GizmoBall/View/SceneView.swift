@@ -87,7 +87,7 @@ class SceneView: SKView {
                     
                     let identifier = actionToIdentifier[action]!
                     if(identifier == "Ball") {
-                        scene.ball = sprite as? Ball
+                        scene.ball = copied as? Ball
                     }
                     
                     pasteBoard.setString("true", forType: NSPasteboard.PasteboardType(rawValue: "result"))
