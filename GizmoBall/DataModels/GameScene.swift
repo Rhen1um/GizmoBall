@@ -275,7 +275,13 @@ extension GameScene : SKPhysicsContactDelegate{
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-
+        
+        if firstBody.categoryBitMask == 0 {
+            if let ball = secondBody.node as? Ball {
+                ball.changeGravity()
+            }
+        }
+        
         if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
             if let node = secondBody.node as? GameComponent,
                 let ball = firstBody.node as? Ball{
