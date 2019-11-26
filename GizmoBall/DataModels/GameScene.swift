@@ -157,8 +157,16 @@ class GameScene: SKScene {
     }
     
     func removeSelectedComponent() {
-        if let selectedComponent = self.selectedComponent {
+        if let selectedComponent = self.selectedComponent,
+            let name = self.selectedComponent?.name {
             selectedComponent.removeFromParent()
+            if name == "Ball" {
+                self.ball = nil
+            } else if name == "LeftBar" {
+                self.leftBar = nil
+            } else if name == "RightBar" {
+                self.rightBar = nil
+            }
         }
     }
     
