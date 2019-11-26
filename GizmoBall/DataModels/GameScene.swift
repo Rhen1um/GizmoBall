@@ -20,6 +20,7 @@ struct PhysicsCategory {
 
 class GameScene: SKScene {
     private var _ball: Ball?
+    private var selectComponent: GameComponent?
     
     var ball: Ball? {
         get {
@@ -40,14 +41,14 @@ class GameScene: SKScene {
     }
     
     override func mouseDown(with event: NSEvent) {
-        let point = event.location(in: self)
-        let location = CGPoint(x: floor((point.x)/unit)*unit + 30, y: floor((point.y)/unit)*unit + 30)
-        let ball = Ball(location: location)
-        let square = Square(location: location)
+//        let point = event.location(in: self)
+//        let location = CGPoint(x: floor((point.x)/unit)*unit + 30, y: floor((point.y)/unit)*unit + 30)
+//        let ball = Ball(location: location)
+//        let square = Square(location: location)
 //        ball.zoomIn()
-        ball.startPlay()
-        self.addChild(ball)
-        self.addChild(square)
+//        ball.startPlay()
+//        self.addChild(ball)
+//        self.addChild(square)
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -55,13 +56,13 @@ class GameScene: SKScene {
     }
     
     
-//    override func keyDown(with event: NSEvent) {
+    override func keyDown(with event: NSEvent) {
 //        switch event.keyCode {
 //        case 0x31:
 //        default:
 //            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
 //        }
-//    }
+    }
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -118,3 +119,5 @@ extension GameScene {
         }
     }
 }
+
+
