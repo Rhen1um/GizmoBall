@@ -13,5 +13,11 @@ class Circle: Shape {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "circle"))
+        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2)
+        if let physics = self.physicsBody {
+            physics.affectedByGravity = false
+            physics.allowsRotation = false
+            physics.isDynamic = false
+        }
     }
 }

@@ -9,6 +9,8 @@ import AppKit
 import SpriteKit
 
 class Shape: GameComponent {
+    
+    
     override public func makeAction(with ball: Ball) {
         
     }
