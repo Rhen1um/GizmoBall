@@ -65,9 +65,20 @@ class ComponentFactory {
 
 // MARK: Helper functions
 func convertToHintRectPosition(point: CGPoint) -> CGPoint {
-    return CGPoint(x:floor((point.x)/unit)*unit, y: floor((point.y)/unit)*unit)
+    return convertToHintRectPosition(point: point, size: 1)
+}
+
+func convertToHintRectPosition(point: CGPoint, size: CGFloat) -> CGPoint {
+    let scale = unit * size
+    return CGPoint(x:floor((point.x)/scale)*scale, y: floor((point.y)/scale)*scale)
 }
 
 func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
-    return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
+    return convertToComponentDestinationPosition(point: point, size: 1)
 }
+    
+func convertToComponentDestinationPosition(point: CGPoint, size: CGFloat) -> CGPoint {
+    let scale = unit * size
+    return CGPoint(x:floor((point.x)/scale)*scale+scale/2, y: floor((point.y)/scale)*scale+scale/2)
+}
+
