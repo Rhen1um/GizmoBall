@@ -8,23 +8,10 @@
 
 import Cocoa
 
-enum ComponentDrag {
-    static let type = NSPasteboard.PasteboardType("Rhenium.GizmoBall.ComponentDrag")
-    static let dragBallAction = "DragBallAction"
-    static let dragTriangleAction = "DragTriangleAction"
-    static let dragCircleAction = "DragCircleAction"
-    //...
-}
-
-let actionToIdentifier: [String: String] = ["DragCircleAction": "Ball", "DragTriangleAction": "Triangle"]
-
 class ComponentView: NSImageView {
-    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
     }
-    
 }
 
 // MARK: - NSDraggingSource

@@ -22,12 +22,13 @@ class GameComponent: SKSpriteNode{
         self.position = location
         self.nodePosition = CGPoint(x: (location.x + 30) / 60, y: (location.y + 30) / 60)
         
-        self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
-        if let physics = self.physicsBody {
-            physics.affectedByGravity = false
-            physics.allowsRotation = false
-            physics.isDynamic = false
-        }
+        
+//        self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
+//        if let physics = self.physicsBody {
+//            physics.affectedByGravity = false
+//            physics.allowsRotation = false
+//            physics.isDynamic = false
+//        }
     }
     
     public func changePosition(newPoint: CGPoint) {

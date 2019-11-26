@@ -42,12 +42,12 @@ class GameScene: SKScene {
     override func mouseDown(with event: NSEvent) {
         let point = event.location(in: self)
         let location = CGPoint(x: floor((point.x)/unit)*unit + 30, y: floor((point.y)/unit)*unit + 30)
-        let ball = Circle(location: location)
-        ball.zoomIn()
-        ball.zoomIn()
-        ball.nodeRotate()
-        ball.zoomOut()
+        let ball = Ball(location: location)
+        let square = Square(location: location)
+//        ball.zoomIn()
+        ball.startPlay()
         self.addChild(ball)
+        self.addChild(square)
     }
     
     override func mouseDragged(with event: NSEvent) {
