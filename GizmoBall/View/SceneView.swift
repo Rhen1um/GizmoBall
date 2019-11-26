@@ -12,12 +12,8 @@ import SpriteKit
 let unit:CGFloat = 60.0
 
 class SceneView: SKView {
-    
-    lazy var circle = SKSpriteNode.init(texture: SKTexture(imageNamed: "circle"), size: CGSize(width: unit, height: unit))
-    lazy var triangle = SKSpriteNode.init(texture: SKTexture(imageNamed: "triangle"), size: CGSize(width: unit, height: unit))
-    
-    // Map the action to component
-    var actionComponentMap: [String: SKSpriteNode] = [:]
+    // MARK: Initial setup
+    var actionComponentMap: [String: SKSpriteNode] = ComponentFactory().actionComponentMap
     
     // Showed when user drags a component from the ToolBoxView
     let hintRect = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: unit, height: unit)))
@@ -41,9 +37,6 @@ class SceneView: SKView {
     // Called in awakeFromNib()
     func setup() {
         registerForDraggedTypes(Array(acceptableTypes))
-        
-        actionComponentMap["DragCircleAction"] = circle
-        actionComponentMap["DragTriangleAction"] = triangle
     }
     
     // Accept the dragging and show the hintRect
@@ -90,6 +83,12 @@ class SceneView: SKView {
                     let componentDestinationPoint = convertToComponentDestinationPosition(point: point)
                     
                     scene.add(DraggedComponent: copied, at: componentDestinationPoint)
+                    // TODO: 如果是 Ball, 设置一下 scene 的 ball 属性.
+                    
+                    let identifier = actionToIdentifier[action]!
+                    if(identifier == "Ball") {
+                        scene.ball = sprite
+                    }
                     
                     pasteBoard.setString("true", forType: NSPasteboard.PasteboardType(rawValue: "result"))
                 }

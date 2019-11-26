@@ -161,30 +161,30 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="I5B-9X-PQI">
                                                                     <rect key="frame" x="0.0" y="180" width="250" height="70"/>
                                                                     <subviews>
-                                                                        <imageView identifier="Triangle" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-6A-yDX" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="Ball" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-6A-yDX" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="EzX-Y6-3R9"/>
                                                                                 <constraint firstAttribute="height" constant="70" id="Ipp-NT-7ds"/>
                                                                                 <constraint firstAttribute="width" constant="70" id="Wcb-cv-2wW"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="triangle" id="6Sy-D3-P2x"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" identifier="Ball" imageScaling="proportionallyDown" image="ball" id="6Sy-D3-P2x"/>
                                                                         </imageView>
-                                                                        <imageView identifier="Circle" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qgo-gF-Xmt" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="Square" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qgo-gF-Xmt" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="6Pe-ac-l6h"/>
                                                                                 <constraint firstAttribute="height" constant="70" id="doM-JD-ndJ"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="circle" id="Pqr-Ui-f8a"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="square" id="Pqr-Ui-f8a"/>
                                                                         </imageView>
-                                                                        <imageView identifier="Triangle" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8x-p3-Vgk" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="Circle" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8x-p3-Vgk" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="Jvk-29-1eQ"/>
                                                                                 <constraint firstAttribute="height" constant="70" id="bqA-Zm-gbD"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="triangle" id="Nkq-dm-eeF"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="circle" id="Nkq-dm-eeF"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <visibilityPriorities>
@@ -201,30 +201,30 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="IvK-Yt-ggF">
                                                                     <rect key="frame" x="0.0" y="90" width="250" height="70"/>
                                                                     <subviews>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUT-zm-TXS" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="Triangle" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUT-zm-TXS" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="Ff9-F5-VJq"/>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="uqf-Pl-f2n"/>
                                                                                 <constraint firstAttribute="height" constant="70" id="xya-1L-MGb"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="circle" id="oZ0-1a-ez7"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="triangle" id="oZ0-1a-ez7"/>
                                                                         </imageView>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="at8-f8-b1E" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="Absorber" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="at8-f8-b1E" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="9bt-0w-hts"/>
                                                                                 <constraint firstAttribute="height" constant="70" id="B9y-Nv-yT3"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="triangle" id="atS-Yx-e5K"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="absorber" id="atS-Yx-e5K"/>
                                                                         </imageView>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JPD-y2-kE6" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="StraightTrack" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JPD-y2-kE6" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="70" id="gwY-V1-cbf"/>
                                                                                 <constraint firstAttribute="height" constant="70" id="jQY-D2-Alw"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="circle" id="Erf-FZ-ypG"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="straightTrack" id="Erf-FZ-ypG"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <visibilityPriorities>
@@ -241,30 +241,30 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="UH0-VW-O7T">
                                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
                                                                     <subviews>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QbF-DD-JeN" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="LeftBar" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QbF-DD-JeN" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="70" id="Xdt-ed-70U"/>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="mFR-Uc-QoM"/>
                                                                                 <constraint firstAttribute="width" constant="70" id="whB-PA-uJV"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="triangle" id="7PC-Qe-nCv"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bar" id="7PC-Qe-nCv"/>
                                                                         </imageView>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SZv-5D-U2n" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="RightBar" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SZv-5D-U2n" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="70" id="9La-A0-M98"/>
                                                                                 <constraint firstAttribute="width" constant="70" id="X0U-sz-zvU"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="circle" id="bWi-PS-txo"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bar" id="bWi-PS-txo"/>
                                                                         </imageView>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDZ-Tl-K9Q" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
+                                                                        <imageView identifier="CurvedTrack" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDZ-Tl-K9Q" customClass="ComponentView" customModule="GizmoBall" customModuleProvider="target">
                                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="70" id="8w9-Z2-Fmk"/>
                                                                                 <constraint firstAttribute="width" constant="70" id="SAZ-6x-mM1"/>
                                                                             </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="triangle" id="xQ1-EH-fIR"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" identifier="CurvedTrack" imageScaling="proportionallyDown" image="curvedTrack" id="xQ1-EH-fIR"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <visibilityPriorities>
@@ -488,7 +488,13 @@
         <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="absorber" width="237" height="200"/>
+        <image name="ball" width="200" height="200"/>
+        <image name="bar" width="200" height="233"/>
         <image name="circle" width="200" height="200"/>
-        <image name="triangle" width="200" height="200"/>
+        <image name="curvedTrack" width="465" height="437"/>
+        <image name="square" width="200" height="200"/>
+        <image name="straightTrack" width="374" height="372"/>
+        <image name="triangle" width="201" height="200"/>
     </resources>
 </document>
