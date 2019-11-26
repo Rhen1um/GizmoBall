@@ -20,9 +20,12 @@ class Absorber: GameComponent {
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
-            physics.isDynamic = false
+            // new
+            physics.isDynamic = true
             physics.categoryBitMask = PhysicsCategory.absorber
             physics.contactTestBitMask = PhysicsCategory.ball
+            physics.usesPreciseCollisionDetection = true
+            physics.collisionBitMask = PhysicsCategory.none
         }
         self.name = "Absorber"
     }

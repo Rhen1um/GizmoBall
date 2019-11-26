@@ -31,9 +31,13 @@ class GameScene: SKScene {
             return _selectedComponent
         }
         set {
-            // 如果选中物体，移动选中提示框
-            hintRect.isHidden = false
-            hintRect.position = CGPoint(x: newValue!.position.x-unit/2, y: newValue!.position.y-unit/2)
+            if newValue != nil {
+                // 如果选中物体，移动选中提示框
+                hintRect.isHidden = false
+                hintRect.position = CGPoint(x: newValue!.position.x-unit/2, y: newValue!.position.y-unit/2)
+            } else {
+                hintRect.isHidden = true
+            }
             _selectedComponent = newValue
         }
     }
@@ -60,6 +64,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         drawTheGrid()
         // 注册选中提示框
+        self.physicsWorld.contactDelegate = self
         self.addChild(hintRect)
         hintRect.strokeColor = .yellow
         hintRect.isHidden = true
@@ -69,15 +74,25 @@ class GameScene: SKScene {
         guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
             // 如果没选中，那么不显示选中提示框
             hintRect.isHidden = true
+            self.selectedComponent = nil
             return
         }
         self.selectedComponent = selectedComponent
     }
     
     override func mouseDragged(with event: NSEvent) {
-        
+        if let selectedComponent = self.selectedComponent {
+            selectedComponent.position = event.location(in: self)
+            hintRect.position = convertToHintRectPosition(point: event.location(in: self))
+        }
     }
     
+    override func mouseUp(with event: NSEvent) {
+        if let selectedComponent = self.selectedComponent {
+            selectedComponent.position = convertToComponentDestinationPosition(point: event.location(in: self))
+            hintRect.position = convertToHintRectPosition(point: event.location(in: self))
+        }
+    }
     
     override func keyDown(with event: NSEvent) {
         if (leftBar == nil){
@@ -163,6 +178,9 @@ class GameScene: SKScene {
                 self.rightBar = nil
             }
         }
+        
+        // added by JJAYCHEN
+        self.selectedComponent = nil
     }
     
     func zoomOutSelectedComponent() {
@@ -183,6 +201,7 @@ class GameScene: SKScene {
     
     func enterEditMode() {
         // TODO: Don't know how to implement
+        isPlayMode = false
     }
     
 }
@@ -198,8 +217,12 @@ extension GameScene {
     // MARK: Process for dragging
     public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
         if !isPlayMode {
+            //            if let component = node as? GameComponent {
+            //                component.
+            //            }
             node.position = point
             self.addChild(node)
+            self.selectedComponent = node as? GameComponent
         }
     }
 }
@@ -208,6 +231,7 @@ extension GameScene : SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
+        print(contact.bodyB.categoryBitMask)
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask{
             firstBody = contact.bodyA
             secondBody = contact.bodyB
@@ -215,7 +239,7 @@ extension GameScene : SKPhysicsContactDelegate{
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        
+
         if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
             if let node = secondBody.node as? GameComponent,
                 let ball = firstBody.node as? Ball{

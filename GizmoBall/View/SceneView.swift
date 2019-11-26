@@ -16,7 +16,13 @@ class SceneView: SKView {
     var actionComponentMap: [String: SKSpriteNode] = ComponentFactory().actionComponentMap
     
     // Showed when user drags a component from the ToolBoxView
-    let hintRect = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: unit, height: unit)))
+    var hintRect:SKShapeNode {
+        get {
+            let scene = self.scene as! GameScene
+            scene.hintRect.isHidden = false
+            return scene.hintRect
+        }
+    }
     
     // Default method. Do no care about it
     override func draw(_ dirtyRect: NSRect) {
@@ -25,7 +31,6 @@ class SceneView: SKView {
     
     override func awakeFromNib() {
         setup()
-        hintRect.strokeColor = .red
     }
     
     // MARK: - NSDraggingDestination
@@ -45,7 +50,7 @@ class SceneView: SKView {
         let pasteBoard = sender.draggingPasteboard
         
         if let types = pasteBoard.types, acceptableTypes.intersection(types).count > 0 {
-            self.scene!.addChild(hintRect)
+//            self.scene!.addChild(hintRect)
             return .copy
         }
         
@@ -64,12 +69,14 @@ class SceneView: SKView {
     
     // Remove the hintRect from scene
     override func draggingExited(_ sender: NSDraggingInfo?) {
-        hintRect.removeFromParent()
+//        hintRect.removeFromParent()
+        hintRect.isHidden = true
     }
     
     // Add the specified component and remove the hintRect
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        hintRect.removeFromParent()
+//        hintRect.removeFromParent()
+        hintRect.isHidden = true
         if let scene = self.scene as? GameScene {
             let pasteBoard = sender.draggingPasteboard
             
@@ -97,16 +104,5 @@ class SceneView: SKView {
             }
         }
         return false
-    }
-}
-
-extension SceneView {
-    // MARK: Helper functions
-    func convertToHintRectPosition(point: CGPoint) -> CGPoint {
-        return CGPoint(x:floor((point.x)/unit)*unit, y: floor((point.y)/unit)*unit)
-    }
-    
-    func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
-        return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
     }
 }
