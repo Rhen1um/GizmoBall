@@ -60,6 +60,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         drawTheGrid()
         // 注册选中提示框
+        self.physicsWorld.contactDelegate = self
         self.addChild(hintRect)
         hintRect.strokeColor = .yellow
         hintRect.isHidden = true
@@ -208,6 +209,7 @@ extension GameScene : SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
+        print(contact.bodyB.categoryBitMask)
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask{
             firstBody = contact.bodyA
             secondBody = contact.bodyB
@@ -215,7 +217,7 @@ extension GameScene : SKPhysicsContactDelegate{
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        
+
         if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
             if let node = secondBody.node as? GameComponent,
                 let ball = firstBody.node as? Ball{
