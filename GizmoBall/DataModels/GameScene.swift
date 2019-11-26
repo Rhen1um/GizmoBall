@@ -44,7 +44,7 @@ class GameScene: SKScene {
         let location = CGPoint(x: floor((point.x)/unit)*unit + 30, y: floor((point.y)/unit)*unit + 30)
         let ball = Ball(location: location)
         let square = Square(location: location)
-//        ball.zoomIn()
+        ball.zoomIn()
         ball.startPlay()
         self.addChild(ball)
         self.addChild(square)

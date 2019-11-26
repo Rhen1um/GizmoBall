@@ -11,6 +11,8 @@ import SpriteKit
 
 class LeftBar: Bar {
     
+    
+    
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "bar"))
         self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "bar"), size: self.size)
@@ -19,6 +21,7 @@ class LeftBar: Bar {
             physics.allowsRotation = false
             physics.isDynamic = false
         }
+        self.name = "LeftBar"
     }
     
 
