@@ -115,14 +115,6 @@ class GameScene: SKScene {
         // Called before each frame is rendered
     }
     
-    // MARK: Process for dragging
-    
-    public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
-        node.position = point
-        self.addChild(node)
-    }
-    
-    
     public func drawTheGrid() {
         let width = self.size.width / 2;
         let height = self.size.height / 2;
@@ -156,13 +148,33 @@ class GameScene: SKScene {
         self.ball?.startPlay()
     }
     
+    // MARK: Component Operations
+    func rotateSelectedComponent() {
+        if let selectedComponent = self.selectedComponent {
+            selectedComponent.nodeRotate()
+        }
+    }
+    
+    func removeSelectedComponent() {
+        if let selectedComponent = self.selectedComponent {
+            selectedComponent.removeFromParent()
+        }
+    }
+    
 }
 
 extension GameScene {
+    // MARK: configuration for saving
     override static var supportsSecureCoding: Bool {
         get {
             return true
         }
+    }
+    
+    // MARK: Process for dragging
+    public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
+        node.position = point
+        self.addChild(node)
     }
 }
 
