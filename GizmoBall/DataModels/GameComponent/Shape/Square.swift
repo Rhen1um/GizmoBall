@@ -13,7 +13,7 @@ class Square: GameComponent {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "square"))
-        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle"), size: self.size)
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "square"), size: self.size)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
