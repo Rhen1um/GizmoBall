@@ -30,11 +30,11 @@ class GameScene: SKScene {
             return _selectedComponent
         }
         set {
-            if newValue != nil {
+            if let component = newValue {
                 // 如果选中物体，移动选中提示框
                 hintRect.isHidden = false
-                hintRect.setScale(newValue!.xScale)
-//                hintRect.position = CGPoint(x: newValue!.position.x-unit/2, y: newValue!.position.y-unit/2)
+                hintRect.setScale(component.xScale)
+                hintRect.position = convertToHintRectPosition(point: component.position, size: component.xScale)
             } else {
                 hintRect.setScale(1)
                 hintRect.isHidden = true
@@ -80,21 +80,20 @@ class GameScene: SKScene {
             self.selectedComponent = nil
             return
         }
-//        hintRect.position = selectedComponent.position
         self.selectedComponent = selectedComponent
     }
     
     override func mouseDragged(with event: NSEvent) {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.position = event.location(in: self)
-            hintRect.position = convertToHintRectPosition(point: event.location(in: self))
+            hintRect.position = convertToHintRectPosition(point: event.location(in: self), size: selectedComponent.xScale)
         }
     }
     
     override func mouseUp(with event: NSEvent) {
         if let selectedComponent = self.selectedComponent {
-            selectedComponent.position = convertToComponentDestinationPosition(point: event.location(in: self))
-            hintRect.position = convertToHintRectPosition(point: event.location(in: self))
+            selectedComponent.position = convertToComponentDestinationPosition(point: event.location(in: self), size: selectedComponent.xScale)
+            hintRect.position = convertToHintRectPosition(point: event.location(in: self), size: selectedComponent.xScale)
         }
     }
     
@@ -191,6 +190,8 @@ class GameScene: SKScene {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.zoomOut()
             HintRectHelper.zoomOut(hintRect: hintRect)
+            selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
         }
     }
     
@@ -198,7 +199,10 @@ class GameScene: SKScene {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.zoomIn()
             HintRectHelper.zoomIn(hintRect: hintRect)
+            selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
         }
+
     }
     
     func enterPlayMode() {
