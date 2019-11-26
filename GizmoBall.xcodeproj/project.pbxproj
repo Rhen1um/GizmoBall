@@ -28,6 +28,7 @@
 		639FBD7F2385A2D40011D5A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 639FBD7E2385A2D40011D5A2 /* Assets.xcassets */; };
 		639FBD822385A2D40011D5A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639FBD802385A2D40011D5A2 /* Main.storyboard */; };
 		63A959BE238788F0004D2F2D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63A959BD238788F0004D2F2D /* GameScene.sks */; };
+		63C71187238D63B4007F4CFC /* HintRectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C71186238D63B4007F4CFC /* HintRectHelper.swift */; };
 		63FE60B923880F60005BFF99 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FE60B823880F60005BFF99 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		639FBD832385A2D40011D5A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		639FBD842385A2D40011D5A2 /* GizmoBall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GizmoBall.entitlements; sourceTree = "<group>"; };
 		63A959BD238788F0004D2F2D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		63C71186238D63B4007F4CFC /* HintRectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintRectHelper.swift; sourceTree = "<group>"; };
 		63D12EB62387AED700AB5025 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		63FE60B823880F60005BFF99 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				637B2F38238D15DF00A8AB58 /* DragActionHelper.swift */,
+				63C71186238D63B4007F4CFC /* HintRectHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				5B5DC94923891E6700A55905 /* Shape.swift in Sources */,
 				5B5DC94B23891EBE00A55905 /* Circle.swift in Sources */,
 				639FBD7D2385A2D40011D5A2 /* SplitViewController.swift in Sources */,
+				63C71187238D63B4007F4CFC /* HintRectHelper.swift in Sources */,
 				637B2F39238D15DF00A8AB58 /* DragActionHelper.swift in Sources */,
 				5B5DC95723891FB400A55905 /* Bar.swift in Sources */,
 				5B5DC95523891F8D00A55905 /* CurvedTrack.swift in Sources */,
@@ -434,7 +438,7 @@
 				CODE_SIGN_ENTITLEMENTS = GizmoBall/GizmoBall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6Q58LP8XS2;
+				DEVELOPMENT_TEAM = XKUVHTJ3W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GizmoBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -455,7 +459,7 @@
 				CODE_SIGN_ENTITLEMENTS = GizmoBall/GizmoBall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6Q58LP8XS2;
+				DEVELOPMENT_TEAM = XKUVHTJ3W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GizmoBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
