@@ -21,18 +21,14 @@ class Bar: GameComponent {
     override public func zoomIn() {
         self.position = CGPoint(x: self.position.x + 30, y: self.position.y)
         self.xScale += 1
-        self.yScale += 1
-        self.nodeSize += 1
     }
        
     override public func zoomOut() {
-        if(self.nodeSize == 1) {
+        if(self.xScale == 1) {
             return
         }
         self.position = CGPoint(x: self.position.x - 30, y: self.position.y)
         self.xScale -= 1
-        self.yScale -= 1
-        self.nodeSize -= 1
     }
     
 }

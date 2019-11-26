@@ -17,9 +17,11 @@ class Ball: GameComponent {
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
-            physics.isDynamic = false
+            // new
+            physics.isDynamic = true
             physics.categoryBitMask = PhysicsCategory.ball
-            physics.contactTestBitMask = PhysicsCategory.track + PhysicsCategory.absorber
+            physics.contactTestBitMask = PhysicsCategory.absorber
+            physics.usesPreciseCollisionDetection = true
             
         }
         self.name = "Ball"
@@ -29,6 +31,12 @@ class Ball: GameComponent {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = true
+    }
+    
+    public func disableGravity() {
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.allowsRotation = false
     }
     
     public func changeGravity() {
