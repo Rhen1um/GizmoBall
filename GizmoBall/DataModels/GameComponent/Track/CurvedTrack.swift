@@ -9,7 +9,7 @@
 import AppKit
 import SpriteKit
 
-class CurvedTrack: GameComponent {
+class CurvedTrack: Track {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "curvedTrack"))
@@ -19,5 +19,9 @@ class CurvedTrack: GameComponent {
             physics.allowsRotation = false
             physics.isDynamic = false
         }
+        self.name = "CurvedTrack"
+        super.lineNodes = LineNodes()
+        super.lineNodes?.rightLine.physicsBody?.affectedByGravity = false
+        
     }
 }

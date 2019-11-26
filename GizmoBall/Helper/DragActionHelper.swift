@@ -62,3 +62,12 @@ class ComponentFactory {
         actionComponentMap["DragRightBarAction"] = rightBar
     }
 }
+
+// MARK: Helper functions
+func convertToHintRectPosition(point: CGPoint) -> CGPoint {
+    return CGPoint(x:floor((point.x)/unit)*unit, y: floor((point.y)/unit)*unit)
+}
+
+func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
+    return CGPoint(x:floor((point.x)/unit)*unit+unit/2, y: floor((point.y)/unit)*unit+unit/2)
+}

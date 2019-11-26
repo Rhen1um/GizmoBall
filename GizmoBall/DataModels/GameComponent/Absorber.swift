@@ -27,6 +27,7 @@ class Absorber: GameComponent {
             physics.usesPreciseCollisionDetection = true
             physics.collisionBitMask = PhysicsCategory.none
         }
+        self.name = "Absorber"
     }
     
     override public func makeAction(with ball: Ball) {

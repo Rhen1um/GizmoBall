@@ -9,7 +9,7 @@
 import AppKit
 import SpriteKit
 
-class StraightTrack: GameComponent {
+class StraightTrack: Track {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "straightTrack"))
@@ -19,6 +19,9 @@ class StraightTrack: GameComponent {
             physics.allowsRotation = false
             physics.isDynamic = false
         }
+        self.name = "StraightTrack"
+        super.lineNodes = LineNodes()
+        super.lineNodes?.upLine.isHidden = true
     }
     
 
