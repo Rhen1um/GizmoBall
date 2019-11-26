@@ -22,6 +22,8 @@ class GameScene: SKScene {
     // Showed when user drags a component from the ToolBoxView
     let hintRect = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: unit, height: unit)))
     
+    private var isPlayMode: Bool = false
+    
     private var _selectedComponent: GameComponent?
     
     private var selectedComponent: GameComponent? {
@@ -60,6 +62,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         drawTheGrid()
+//        self.physicsWorld.gravity = CGVector(dx: 0, dy: -10)
         
         // 注册选中提示框
         self.addChild(hintRect)
@@ -68,12 +71,12 @@ class GameScene: SKScene {
     }
     
     override func mouseDown(with event: NSEvent) {
-        guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
-            // 如果没选中，那么不显示选中提示框
-            hintRect.isHidden = true
-            return
-        }
-        self.selectedComponent = selectedComponent
+//        guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
+//            // 如果没选中，那么不显示选中提示框
+//            hintRect.isHidden = true
+//            return
+//        }
+//        self.selectedComponent = selectedComponent
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -139,13 +142,11 @@ class GameScene: SKScene {
         }
     }
     
-    public func enableBallGravity(){
-        //        if let physics = self.ball.physicsBody{
-        //            physics.affectedByGravity = true
-        //            physics.isDynamic = true
-        //            physics.allowsRotation = true
-        //        }
-        self.ball?.startPlay()
+    public func startPlay(){
+        if let ball = self.ball {
+            ball.enableGravity()
+            isPlayMode = true
+        }
     }
     
     // MARK: Component Operations
@@ -161,6 +162,26 @@ class GameScene: SKScene {
         }
     }
     
+    func zoomOutSelectedComponent() {
+        if let selectedComponent = self.selectedComponent {
+            selectedComponent.zoomOut()
+        }
+    }
+    
+    func zoomInSelectedComponent() {
+        if let selectedComponent = self.selectedComponent {
+            selectedComponent.zoomIn()
+        }
+    }
+    
+    func enterPlayMode() {
+        startPlay()
+    }
+    
+    func enterEditMode() {
+        // TODO: Don't know how to implement
+    }
+    
 }
 
 extension GameScene {
@@ -173,8 +194,10 @@ extension GameScene {
     
     // MARK: Process for dragging
     public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
-        node.position = point
-        self.addChild(node)
+        if !isPlayMode {
+            node.position = point
+            self.addChild(node)
+        }
     }
 }
 

@@ -24,37 +24,37 @@ class SplitViewController: NSViewController, NSSplitViewDelegate {
     
     // MARK: Button Actions
     @IBAction func rotateButtonClicked(_ sender: Any) {
-        if let scene = self.scene {
+        if let scene = self.scene as? GameScene {
             scene.rotateSelectedComponent()
         }
     }
     @IBAction func removeButtonClicked(_ sender: Any) {
-        if let scene = self.scene {
+        if let scene = self.scene as? GameScene {
             scene.removeSelectedComponent()
         }
     }
     
     @IBAction func zoomOutButtonClicked(_ sender: Any) {
-        if let scene = self.scene {
+        if let scene = self.scene as? GameScene {
             scene.zoomOutSelectedComponent()
         }
     }
     
     @IBAction func zoomInButtonClicked(_ sender: Any) {
-        if let scene = self.scene {
+        if let scene = self.scene as? GameScene {
             scene.zoomInSelectedComponent()
         }
     }
     
     @IBAction func playButtonClicked(_ sender: Any) {
-        if let scene = self.scene {
-            scene.Play()
+        if let scene = self.scene as? GameScene {
+            scene.enterPlayMode()
         }
     }
     
-    @IBAction editButtonClicked(_ sender: Any) {
-        if let scene = self.scene {
-            scene.Edit()
+    @IBAction func editButtonClicked(_ sender: Any) {
+        if let scene = self.scene as? GameScene {
+            scene.enterEditMode()
         }
     }
 }

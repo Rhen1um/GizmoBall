@@ -25,7 +25,7 @@ class Ball: GameComponent {
         self.name = "Ball"
     }
 
-    public func startPlay() {
+    public func enableGravity() {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = true
