@@ -10,11 +10,10 @@ import SpriteKit
 //import GameplayKit
 
 struct PhysicsCategory {
-    static let none : UInt32 = 0
     static let all: UInt32 = UINT32_MAX
     static let ball: UInt32 = 0b1
     static let absorber: UInt32 = 0b10
-    static let track: UInt32 = 0b100
+    static let track : UInt32 = 0
 }
 
 
@@ -280,7 +279,13 @@ extension GameScene : SKPhysicsContactDelegate{
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-
+        
+        if firstBody.categoryBitMask == 0 {
+            if let ball = secondBody.node as? Ball {
+                ball.changeGravity()
+            }
+        }
+        
         if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
             if let node = secondBody.node as? GameComponent,
                 let ball = firstBody.node as? Ball{
