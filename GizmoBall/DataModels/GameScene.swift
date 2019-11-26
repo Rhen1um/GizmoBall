@@ -19,9 +19,9 @@ struct PhysicsCategory {
 
 
 class GameScene: SKScene {
-    private var _ball: Ball
+    private var _ball: Ball?
     
-    var ball: Ball {
+    var ball: Ball? {
         get {
             return _ball
         }
@@ -30,10 +30,6 @@ class GameScene: SKScene {
         }
     }
     
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func sceneDidLoad() {
         
