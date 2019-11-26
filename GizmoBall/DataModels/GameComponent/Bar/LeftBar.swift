@@ -10,12 +10,12 @@ import AppKit
 import SpriteKit
 
 class LeftBar: Bar {
-    
-    
-    
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "bar"))
-        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "bar"), size: self.size)
+        let path = CGMutablePath()
+        path.addLines(between: [CGPoint(x: -30, y: -30), CGPoint(x: 30, y: -30), CGPoint(x: 30, y: -25), CGPoint(x: -30, y: -25), CGPoint(x: -30, y: -30)])
+        path.closeSubpath()
+        self.physicsBody = SKPhysicsBody(polygonFrom: path)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false
