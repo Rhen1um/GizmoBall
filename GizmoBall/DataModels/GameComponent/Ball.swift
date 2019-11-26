@@ -31,6 +31,12 @@ class Ball: GameComponent {
         self.physicsBody?.allowsRotation = true
     }
     
+    public func disableGravity() {
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.allowsRotation = false
+    }
+    
     public func changeGravity() {
         self.physicsBody?.affectedByGravity = !(self.physicsBody?.affectedByGravity ?? false)
     }
