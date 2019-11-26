@@ -9,8 +9,31 @@
 import SpriteKit
 //import GameplayKit
 
+struct PhysicsCategory {
+    static let none : UInt32 = 0
+    static let all: UInt32 = UINT32_MAX
+    static let ball: UInt32 = 0b1
+    static let absorber: UInt32 = 0b10
+    static let track: UInt32 = 0b100
+}
+
 
 class GameScene: SKScene {
+    private var _ball: Ball
+    
+    var ball: Ball {
+        get {
+            return _ball
+        }
+        set {
+            _ball = newValue
+        }
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func sceneDidLoad() {
         
@@ -51,16 +74,16 @@ class GameScene: SKScene {
     
     // MARK: Process for dragging
     
-    func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
+    public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
         node.position = point
         self.addChild(node)
     }
     
     
-    func drawTheGrid() {
+    public func drawTheGrid() {
         let width = self.size.width / 2;
         let height = self.size.height / 2;
-        for x in stride(from: -width, to: width, by: 60){
+        for x in stride(from: -width, to: width, by: unit){
             let myLine = SKShapeNode()
             let pathToDraw = CGMutablePath()
             pathToDraw.move(to: CGPoint(x: x, y: height))
@@ -70,7 +93,7 @@ class GameScene: SKScene {
             self.addChild(myLine)
         }
         
-        for y in stride(from: -height, to: height, by: 60){
+        for y in stride(from: -height, to: height, by: unit){
             let myLine = SKShapeNode()
             let pathToDraw = CGMutablePath()
             pathToDraw.move(to: CGPoint(x: width , y: y))
@@ -80,6 +103,16 @@ class GameScene: SKScene {
             self.addChild(myLine)
         }
     }
+    
+    public func enableBallGravity(){
+//        if let physics = self.ball.physicsBody{
+//            physics.affectedByGravity = true
+//            physics.isDynamic = true
+//            physics.allowsRotation = true
+//        }
+        self.ball.startPlay()
+    }
+    
 }
 
 extension GameScene {
