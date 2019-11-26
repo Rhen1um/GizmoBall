@@ -29,6 +29,7 @@
 		639FBD822385A2D40011D5A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639FBD802385A2D40011D5A2 /* Main.storyboard */; };
 		63A959BE238788F0004D2F2D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63A959BD238788F0004D2F2D /* GameScene.sks */; };
 		63FE60B923880F60005BFF99 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FE60B823880F60005BFF99 /* GameScene.swift */; };
+		8107E9B3238D595500D1AC0B /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E9B2238D595500D1AC0B /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		63A959BD238788F0004D2F2D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		63D12EB62387AED700AB5025 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		63FE60B823880F60005BFF99 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		8107E9B2238D595500D1AC0B /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			children = (
 				63FE60B823880F60005BFF99 /* GameScene.swift */,
 				63EE556023898493008B34DD /* GameComponent */,
+				8107E9B2238D595500D1AC0B /* GameOverScene.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				5B5DC94923891E6700A55905 /* Shape.swift in Sources */,
 				5B5DC94B23891EBE00A55905 /* Circle.swift in Sources */,
 				639FBD7D2385A2D40011D5A2 /* SplitViewController.swift in Sources */,
+				8107E9B3238D595500D1AC0B /* GameOverScene.swift in Sources */,
 				637B2F39238D15DF00A8AB58 /* DragActionHelper.swift in Sources */,
 				5B5DC95723891FB400A55905 /* Bar.swift in Sources */,
 				5B5DC95523891F8D00A55905 /* CurvedTrack.swift in Sources */,

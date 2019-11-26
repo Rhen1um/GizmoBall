@@ -61,6 +61,7 @@ class GameScene: SKScene {
         drawTheGrid()
         // 注册选中提示框
         self.physicsWorld.contactDelegate = self
+        
         self.addChild(hintRect)
         hintRect.strokeColor = .yellow
         hintRect.isHidden = true
@@ -186,6 +187,36 @@ class GameScene: SKScene {
         // TODO: Don't know how to implement
     }
     
+    func presentGameOverScene() {
+        let reveal = SKTransition.flipVertical(withDuration: 0.5)
+//        let message = "Game Over!"
+//
+//        let label = SKLabelNode(fontNamed: "Chalkduster")
+//
+//        label.text = message
+//        label.fontSize = 80
+//        label.fontColor = .white
+//        label.position = CGPoint(x: 0, y: 0)
+//
+//        self.run(SKAction.sequence([
+//            SKAction.run {
+//                self.addChild(label)
+//            },
+//            SKAction.wait(forDuration: 1.5),
+//            SKAction.run{
+//                label.removeFromParent()
+//            }
+//            ]))
+        let currentScene = self
+        let gameoverScene = GameOverScene(size: self.size, scene: currentScene)
+        self.view?.presentScene(gameoverScene, transition: reveal)
+        ball?.restore()
+        print("restore")
+        leftBar?.restore()
+        rightBar?.restore()
+    }
+    
+    
 }
 
 extension GameScene {
@@ -222,6 +253,9 @@ extension GameScene : SKPhysicsContactDelegate{
             if let node = secondBody.node as? GameComponent,
                 let ball = firstBody.node as? Ball{
                 node.makeAction(with: ball)
+                if node is Absorber {
+                    self.presentGameOverScene()
+                }
             }
         }
     }
