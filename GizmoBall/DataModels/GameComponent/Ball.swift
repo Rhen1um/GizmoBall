@@ -19,7 +19,7 @@ class Ball: GameComponent {
             physics.allowsRotation = false
             physics.restitution = 1
             // new
-            physics.isDynamic = true
+            physics.isDynamic = false
             physics.categoryBitMask = PhysicsCategory.ball
             physics.contactTestBitMask = PhysicsCategory.absorber | PhysicsCategory.track
             physics.usesPreciseCollisionDetection = true

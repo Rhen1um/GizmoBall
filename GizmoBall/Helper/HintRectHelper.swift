@@ -13,7 +13,7 @@ class HintRectHelper {
         if(hintRect.xScale == 3) {
             return
         }
-//        hintRect.position = CGPoint(x: hintRect.position.x + unit, y: hintRect.position.y + unit)
+        hintRect.position = CGPoint(x: hintRect.position.x + unit/2, y: hintRect.position.y + unit/2)
         hintRect.xScale += 1
         hintRect.yScale += 1
     }
@@ -22,7 +22,7 @@ class HintRectHelper {
         if(hintRect.xScale == 1) {
             return
         }
-//        hintRect.position = CGPoint(x: hintRect.position.x - unit, y: hintRect.position.y - unit)
+        hintRect.position = CGPoint(x: hintRect.position.x - unit/2, y: hintRect.position.y - unit/2)
         hintRect.xScale -= 1
         hintRect.yScale -= 1
     }

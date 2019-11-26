@@ -20,7 +20,7 @@ struct PhysicsCategory {
 
 class GameScene: SKScene {
     // Showed when user drags a component from the ToolBoxView
-    let hintRect = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: unit, height: unit)))
+    let hintRect = SKShapeNode(rectOf: CGSize(width: unit, height: unit))
     
     private var isPlayMode: Bool = false
     
@@ -69,6 +69,9 @@ class GameScene: SKScene {
         self.physicsWorld.contactDelegate = self
         if !self.children.contains(hintRect) {
             self.addChild(hintRect)
+        } else {
+            hintRect.removeFromParent()
+            self.addChild(hintRect)
         }
         hintRect.strokeColor = .yellow
         hintRect.isHidden = true
@@ -76,6 +79,7 @@ class GameScene: SKScene {
     
     override func mouseDown(with event: NSEvent) {
         guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
+            // TODO: 重新开始游戏后，再次单击物体就会取消选中
             // 如果没选中，那么不显示选中提示框
             hintRect.isHidden = true
             self.selectedComponent = nil
@@ -87,14 +91,14 @@ class GameScene: SKScene {
     override func mouseDragged(with event: NSEvent) {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.position = event.location(in: self)
-            hintRect.position = convertToHintRectPosition(point: event.location(in: self), size: selectedComponent.xScale)
+            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
         }
     }
     
     override func mouseUp(with event: NSEvent) {
         if let selectedComponent = self.selectedComponent {
             selectedComponent.position = convertToComponentDestinationPosition(point: event.location(in: self), size: selectedComponent.xScale)
-            hintRect.position = convertToHintRectPosition(point: event.location(in: self), size: selectedComponent.xScale)
+            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
         }
     }
     
