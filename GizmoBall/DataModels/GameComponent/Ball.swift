@@ -22,7 +22,7 @@ class Ball: GameComponent {
             physics.contactTestBitMask = PhysicsCategory.track + PhysicsCategory.absorber
             
         }
-
+        self.name = "Ball"
     }
 
     public func startPlay() {
