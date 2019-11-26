@@ -20,6 +20,4 @@ class CurvedTrack: GameComponent {
             physics.isDynamic = false
         }
     }
-    
-
 }
