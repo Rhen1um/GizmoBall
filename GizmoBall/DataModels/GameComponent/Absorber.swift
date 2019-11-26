@@ -12,7 +12,7 @@ import SpriteKit
 class Absorber: GameComponent {
     
     convenience init(location: CGPoint) {
-        self.init(location: location, texture: SKTexture(imageNamed: ""))
+        self.init(location: location, texture: SKTexture(imageNamed: "absorber"))
     }
     
     override public func makeAction(with ball: Ball) {

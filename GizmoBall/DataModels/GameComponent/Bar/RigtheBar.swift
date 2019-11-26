@@ -9,10 +9,10 @@
 import AppKit
 import SpriteKit
 
-class RightBar: GameComponent {
+class RightBar: Bar {
     
     convenience init(location: CGPoint) {
-        self.init(location: location, texture: SKTexture(imageNamed: ""))
+        self.init(location: location, texture: SKTexture(imageNamed: "bar"))
     }
     
 

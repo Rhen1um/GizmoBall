@@ -12,7 +12,7 @@ import SpriteKit
 class StraightTrack: GameComponent {
     
     convenience init(location: CGPoint) {
-        self.init(location: location, texture: SKTexture(imageNamed: ""))
+        self.init(location: location, texture: SKTexture(imageNamed: "straightTrack"))
     }
     
 
