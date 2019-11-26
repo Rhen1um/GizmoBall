@@ -13,6 +13,12 @@ class RightBar: Bar {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "bar"))
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "bar"), size: self.size)
+        if let physics = self.physicsBody {
+            physics.affectedByGravity = false
+            physics.allowsRotation = false
+            physics.isDynamic = false
+        }
     }
     
 
