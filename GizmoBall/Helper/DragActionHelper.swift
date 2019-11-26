@@ -69,8 +69,13 @@ func convertToHintRectPosition(point: CGPoint) -> CGPoint {
 }
 
 func convertToHintRectPosition(point: CGPoint, size: CGFloat) -> CGPoint {
-    let scale = unit * size
-    return CGPoint(x:floor((point.x)/scale)*scale, y: floor((point.y)/scale)*scale)
+//    let scale = unit * size
+//    return CGPoint(x:floor((point.x)/scale)*scale, y: floor((point.y)/scale)*scale)
+    if Int(size) % 2 == 1 {
+        return CGPoint(x:floor(point.x/unit)*unit + unit/2, y: floor(point.y/unit)*unit + unit/2)
+    } else {
+        return CGPoint(x:floor((point.x-unit/4)/unit)*unit + unit, y: floor((point.y-unit/4)/unit)*unit + unit)
+    }
 }
 
 func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
@@ -78,7 +83,14 @@ func convertToComponentDestinationPosition(point: CGPoint) -> CGPoint {
 }
     
 func convertToComponentDestinationPosition(point: CGPoint, size: CGFloat) -> CGPoint {
-    let scale = unit * size
-    return CGPoint(x:floor((point.x)/scale)*scale+scale/2, y: floor((point.y)/scale)*scale+scale/2)
+//    let scale = unit * size
+//    return CGPoint(x:floor((point.x)/scale)*scale+scale/2, y: floor((point.y)/scale)*scale+scale/2)
+
+//    let scale = unit/2
+    if Int(size) % 2 == 1 {
+        return CGPoint(x:floor(point.x/unit)*unit + unit/2, y: floor(point.y/unit)*unit + unit/2)
+    } else {
+        return CGPoint(x:floor((point.x-unit/4)/unit)*unit + unit, y: floor((point.y-unit/4)/unit)*unit + unit)
+    }
 }
 
