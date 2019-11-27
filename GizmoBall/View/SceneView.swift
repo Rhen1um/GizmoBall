@@ -90,9 +90,9 @@ class SceneView: SKView {
                     let point = convert(sender.draggingLocation, to: scene)
                     let componentDestinationPoint = convertToComponentDestinationPosition(point: point)
                     
-                    scene.add(DraggedComponent: copied, at: componentDestinationPoint)
-                    
-                    pasteBoard.setString("true", forType: NSPasteboard.PasteboardType(rawValue: "result"))
+                    if scene.add(DraggedComponent: copied, at: componentDestinationPoint) {
+                        pasteBoard.setString("true", forType: NSPasteboard.PasteboardType(rawValue: "result"))
+                    }
                 }
                 
                 return true

@@ -14,7 +14,7 @@ class Triangle: GameComponent {
     
     private var _index: Int = 0
     
-    private var index: Int {
+    public var index: Int {
         get {
             return _index
         }
@@ -42,14 +42,55 @@ class Triangle: GameComponent {
         self.index = self.index + 1
     }
     
-    private func getTransparentSquares() -> [CGPoint]? {
+    func getTransparentSquares() -> [CGPoint]? {
+        return getNonTransparentSquares(index: self.index)
+    }
+    
+    private func getTransparentSquares(index: Int) -> [CGPoint]? {
         if self.xScale == 2 {
-            return [CGPoint(x: self.position.x - 0.5*unit*vector[index].x, y: self.position.y - 0.5*unit*vector[index].x)]
+            return [CGPoint(x: self.position.x - 0.5*unit*vector[index].x, y: self.position.y - 0.5*unit*vector[index].y)]
         } else if self.xScale == 3 {
             return [
-                CGPoint(x: self.position.x - unit*vector[index].x, y: self.position.y - unit*vector[index].x),
-                CGPoint(x: self.position.x, y: self.position.y - unit*vector[index].x),
+                CGPoint(x: self.position.x - unit*vector[index].x, y: self.position.y - unit*vector[index].y),
+                CGPoint(x: self.position.x, y: self.position.y - unit*vector[index].y),
                 CGPoint(x: self.position.x - unit*vector[index].x, y: self.position.y),
+            ]
+        }
+        return nil
+    }
+    
+    func getNonTransparentSquaresIfZoomIn() -> [CGPoint]? {
+        if self.xScale == 3 {
+            return nil
+        }
+        let newPosition = CGPoint(x: self.position.x + 30, y: self.position.y + 30)
+        return getNonTransparentSquares(position: newPosition, index: index, scale: self.xScale + 1)
+    }
+    
+    
+    func getNonTransparentSquares() -> [CGPoint]? {
+        return getNonTransparentSquares(index: self.index)
+    }
+    
+    func getNonTransparentSquares(index: Int) -> [CGPoint]? {
+        return getNonTransparentSquares(position: self.position, index: index, scale: self.xScale)
+    }
+    
+    func getNonTransparentSquares(position: CGPoint, index: Int, scale: CGFloat) -> [CGPoint]? {
+        if scale == 2 {
+            return [
+                CGPoint(x: position.x + 0.5*unit*vector[index].x, y: position.y + 0.5*unit*vector[index].y),
+                CGPoint(x: position.x + 0.5*unit*vector[index].x, y: position.y - 0.5*unit*vector[index].y),
+                CGPoint(x: position.x - 0.5*unit*vector[index].x, y: position.y + 0.5*unit*vector[index].y),
+            ]
+        } else if scale == 3 {
+            return [
+                CGPoint(x: position.x, y: position.y),
+                CGPoint(x: position.x + unit*vector[index].x, y: position.y),
+                CGPoint(x: position.x + unit*vector[index].x, y: position.y - unit*vector[index].y),
+                CGPoint(x: position.x, y: position.y + unit*vector[index].y),
+                CGPoint(x: position.x - unit*vector[index].x, y: position.y + unit*vector[index].y),
+                CGPoint(x: position.x + unit*vector[index].x, y: position.y - unit*vector[index].y),
             ]
         }
         return nil
@@ -58,7 +99,7 @@ class Triangle: GameComponent {
     func isTransparent(at point: CGPoint) -> Bool {
         if let points = getTransparentSquares() {
             for p in points {
-                if point.x >= p.x - unit/2, point.x <= p.x + unit/2, point.x >= p.y - unit/2, point.x <= p.y + unit/2 {
+                if point.x >= p.x - unit/2, point.x <= p.x + unit/2, point.y >= p.y - unit/2, point.y <= p.y + unit/2 {
                     return true
                 }
             }

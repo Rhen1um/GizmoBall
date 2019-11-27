@@ -61,6 +61,8 @@ class GameScene: SKScene {
         }
     }
     
+    private var lastPosition: CGPoint?
+    
     
     override func sceneDidLoad() {
         
@@ -90,6 +92,7 @@ class GameScene: SKScene {
                 return
             }
             self.selectedComponent = selectedComponent
+            lastPosition = selectedComponent.position
         }
     }
     
@@ -105,8 +108,51 @@ class GameScene: SKScene {
     override func mouseUp(with event: NSEvent) {
         if !isPlayMode {
             if let selectedComponent = self.selectedComponent {
-                selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: event.location(in: self), size: selectedComponent.xScale))
-                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                let point = event.location(in: self)
+                
+                // 如果拖拽的是三角形
+                if let triangle = selectedComponent as? Triangle {
+                    if let tmpPoints = triangle.getNonTransparentSquares() {
+                        for tmpPoint in tmpPoints {
+                            selectedComponent.zPosition = -1
+                            let detectedNode = self.atPoint(tmpPoint)
+                            selectedComponent.zPosition = 1
+                            
+                            if(detectedNode.name != nil) {
+                                if let position = self.lastPosition {
+                                    selectedComponent.changePosition(newPoint: position)
+                                    hintRect.position = position
+                                }
+                                return
+                            }
+                        }
+                    }
+                }
+                
+                // 如果拖拽进了三角形
+                selectedComponent.zPosition = -1
+                let detectedNode = self.atPoint(point)
+                selectedComponent.zPosition = 0
+                if let triangle = detectedNode as? Triangle {
+                    if !triangle.isTransparent(at: point) {
+                        if let position = self.lastPosition {
+                            selectedComponent.changePosition(newPoint: position)
+                            hintRect.position = position
+                        }
+                        return
+                    }
+                }
+                
+                if detectedNode.name == nil || detectedNode.name == "Triangle" {
+                    lastPosition = nil
+                    selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
+                    hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                } else {
+                    if let position = self.lastPosition {
+                        selectedComponent.changePosition(newPoint: position)
+                        hintRect.position = position
+                    }
+                }
             }
         }
     }
@@ -186,6 +232,23 @@ class GameScene: SKScene {
     // MARK: Component Operations
     func rotateSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
+            if let triangle = selectedComponent as? Triangle {
+                if let tmpPoints = triangle.getNonTransparentSquares(index: triangle.index + 1) {
+                    for tmpPoint in tmpPoints {
+                        selectedComponent.zPosition = -1
+                        let detectedNode = self.atPoint(tmpPoint)
+                        selectedComponent.zPosition = 1
+                        
+                        if(detectedNode.name != nil) {
+                            if let position = self.lastPosition {
+                                selectedComponent.changePosition(newPoint: position)
+                                hintRect.position = position
+                            }
+                            return
+                        }
+                    }
+                }
+            }
             selectedComponent.nodeRotate()
         }
     }
@@ -219,6 +282,24 @@ class GameScene: SKScene {
     
     func zoomInSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
+            if let triangle = selectedComponent as? Triangle {
+                if let tmpPoints = triangle.getNonTransparentSquaresIfZoomIn() {
+                    for tmpPoint in tmpPoints {
+                        selectedComponent.zPosition = -1
+                        let detectedNode = self.atPoint(tmpPoint)
+                        selectedComponent.zPosition = 1
+                        
+                        if(detectedNode.name != nil) {
+                            if let position = self.lastPosition {
+                                selectedComponent.changePosition(newPoint: position)
+                                hintRect.position = position
+                            }
+                            return
+                        }
+                    }
+                }
+            }
+            
             if selectedComponent.zoomIn() {
                 HintRectHelper.zoomIn(hintRect: hintRect)
                 selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
@@ -261,26 +342,38 @@ extension GameScene {
     }
     
     // MARK: Process for dragging
-    public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
-        if !isPlayMode {
-            if node.name == "Ball" {
-                if (self.childNode(withName: "Ball") != nil) {
-                    return
+    public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) -> Bool{
+        if !isPlayMode{
+            let detectedNode = self.atPoint(point)
+            if let triangle = detectedNode as? Triangle {
+                if !triangle.isTransparent(at: point) {
+                    return false
                 }
-                node.zPosition = 1
             }
-            if node.name == "LeftBar", (self.childNode(withName: "LeftBar") != nil) {
-                return
+            
+            if detectedNode.name == nil || detectedNode.name == "Triangle" {
+                if node.name == "Ball" {
+                    if (self.childNode(withName: "Ball") != nil) {
+                        return false
+                    }
+                    node.zPosition = 1
+                }
+                if node.name == "LeftBar", (self.childNode(withName: "LeftBar") != nil) {
+                    return false
+                }
+                if node.name == "RightBar", (self.childNode(withName: "RightBar") != nil) {
+                    return false
+                }
+                if let node = node as? GameComponent {
+                    node.changePosition(newPoint: point)
+                }
+                self.addChild(node)
+                self.selectedComponent = node as? GameComponent
+                
+                return true
             }
-            if node.name == "RightBar", (self.childNode(withName: "RightBar") != nil) {
-                return
-            }
-            if let node = node as? GameComponent {
-                node.changePosition(newPoint: point)
-            }
-            self.addChild(node)
-            self.selectedComponent = node as? GameComponent
         }
+        return false
     }
     
     // MARK: Helper function for selectino
