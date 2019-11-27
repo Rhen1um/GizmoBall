@@ -154,14 +154,16 @@ class GameScene: SKScene {
                     lastPosition = nil
                     selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
                     hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                    if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
+                        if selectedComponent.xScale == 2 {
+                            selectedComponent.position = CGPoint(x: selectedComponent.position.x, y: selectedComponent.position.y - unit/2)
+                            hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
+                        }
+                    }
                 } else {
                     if let position = self.lastPosition {
                         selectedComponent.changePosition(newPoint: position)
-                        hintRect.position = zPosition
-                        if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
-                            if selectedComponent.xScale == 2 {
-                            selectedComponent.position = CGPoint(x: selectedComponent.position.x, y: selectedComponent.position.y - unit/2)
-                            hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
+                        hintRect.position = position
                     }
                 }
             }
@@ -290,8 +292,8 @@ class GameScene: SKScene {
                 else {
                     HintRectHelper.zoomOut(hintRect: hintRect)
                 }
-//                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-//                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                //                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                //                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
             }
         }
     }
@@ -323,8 +325,8 @@ class GameScene: SKScene {
                 else {
                     HintRectHelper.zoomIn(hintRect: hintRect)
                 }
-//                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-//                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                //                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                //                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
             }
         }
         
