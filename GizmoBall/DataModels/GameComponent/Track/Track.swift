@@ -18,6 +18,7 @@ class Track: GameComponent {
         let rightLine: SKShapeNode
         let upLine: SKShapeNode
         let downLine: SKShapeNode
+        let curvedLine: SKShapeNode
         init() {
             splinePoints = [CGPoint(x: -30, y: 30),
                                 CGPoint(x: -30, y: -30)]
@@ -25,7 +26,7 @@ class Track: GameComponent {
                                      count: splinePoints.count)
             leftLine.lineWidth = 0
             leftLine.physicsBody = SKPhysicsBody(edgeChainFrom: leftLine.path!)
-            leftLine.physicsBody?.isDynamic = true
+//            leftLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: 30, y: 30),
                             CGPoint(x: 30, y: -30)]
@@ -33,7 +34,7 @@ class Track: GameComponent {
                                     count: splinePoints.count)
             rightLine.lineWidth = 0
             rightLine.physicsBody = SKPhysicsBody(edgeChainFrom: rightLine.path!)
-            rightLine.physicsBody?.isDynamic = true
+//            rightLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: -30, y: 30),
                             CGPoint(x: 30, y: 30)]
@@ -41,7 +42,7 @@ class Track: GameComponent {
                                  count: splinePoints.count)
             upLine.lineWidth = 0
             upLine.physicsBody = SKPhysicsBody(edgeChainFrom: upLine.path!)
-            upLine.physicsBody?.isDynamic = true
+//            upLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: -30, y: -30),
                             CGPoint(x: 30, y: -30)]
@@ -49,7 +50,18 @@ class Track: GameComponent {
                                    count: splinePoints.count)
             downLine.lineWidth = 0
             downLine.physicsBody = SKPhysicsBody(edgeChainFrom: downLine.path!)
-            downLine.physicsBody?.isDynamic = true
+//            downLine.physicsBody?.isDynamic = true
+            
+            splinePoints = [CGPoint(x: 30, y: 30),
+                            CGPoint(x: 0, y: 22),
+                            CGPoint(x: -12.43, y: 12.43),
+                            CGPoint(x: -22, y: 0),
+                            CGPoint(x: -30, y: -30)]
+            curvedLine = SKShapeNode(splinePoints: &splinePoints,
+                                   count: splinePoints.count)
+            curvedLine.lineWidth = 0
+            curvedLine.physicsBody = SKPhysicsBody(edgeChainFrom: curvedLine.path!)
+//            downLine.physicsBody?.isDynamic = true
         }
         
         

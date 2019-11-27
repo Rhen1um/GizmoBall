@@ -13,7 +13,7 @@ class Ball: GameComponent {
     
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "ball"))
-        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2 - 2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2 - 3)
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.allowsRotation = false

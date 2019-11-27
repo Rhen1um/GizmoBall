@@ -13,19 +13,14 @@ class CurvedTrack: Track {
 
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "curvedTrack"))
-        self.physicsBody = SKPhysicsBody(circleOfRadius: unit / 2)
-        if let physics = self.physicsBody {
-            physics.affectedByGravity = false
-            physics.allowsRotation = false
-            physics.isDynamic = false
-        }
         self.name = "CurvedTrack"
         super.lineNodes = LineNodes()
-        self.addChild(super.lineNodes!.leftLine)
         self.addChild(super.lineNodes!.rightLine)
-        self.addChild(super.lineNodes!.upLine)
         self.addChild(super.lineNodes!.downLine)
-        super.lineNodes?.downLine.physicsBody?.categoryBitMask = 0x0
-        super.lineNodes?.rightLine.physicsBody?.categoryBitMask = 0x0
+        self.addChild(super.lineNodes!.curvedLine)
+        super.lineNodes?.downLine.physicsBody?.categoryBitMask = PhysicsCategory.track
+        super.lineNodes?.downLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
+        super.lineNodes?.rightLine.physicsBody?.categoryBitMask = PhysicsCategory.track
+        super.lineNodes?.rightLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
     }
 }
