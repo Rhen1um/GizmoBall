@@ -26,4 +26,23 @@ class HintRectHelper {
         hintRect.xScale -= 1
         hintRect.yScale -= 1
     }
+    
+    static func zoomInForBar(hintRect: SKShapeNode){
+        if(hintRect.xScale == 3) {
+            return
+        }
+        hintRect.position = CGPoint(x: hintRect.position.x + 30, y: hintRect.position.y)
+        hintRect.xScale += 1
+        
+        return
+    }
+    
+    static func zoomOutForBar(hintRect: SKShapeNode){
+        if(hintRect.xScale == 1) {
+            return
+        }
+        hintRect.position = CGPoint(x: hintRect.position.x - 30, y: hintRect.position.y)
+        hintRect.xScale -= 1
+        return
+    }
 }

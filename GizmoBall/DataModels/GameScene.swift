@@ -34,7 +34,8 @@ class GameScene: SKScene {
             if let component = newValue {
                 // 如果选中物体，移动选中提示框
                 hintRect.isHidden = false
-                hintRect.setScale(component.xScale)
+                hintRect.xScale = component.xScale
+                hintRect.yScale = component.yScale
                 hintRect.position = convertToHintRectPosition(point: component.position, size: component.xScale)
             } else {
                 hintRect.setScale(1)
@@ -98,6 +99,12 @@ class GameScene: SKScene {
             if let selectedComponent = self.selectedComponent {
                 selectedComponent.position = event.location(in: self)
                 hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                
+                if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
+                    if selectedComponent.xScale == 2 {
+                        hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
+                    }
+                }
             }
         }
     }
@@ -107,6 +114,13 @@ class GameScene: SKScene {
             if let selectedComponent = self.selectedComponent {
                 selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: event.location(in: self), size: selectedComponent.xScale))
                 hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                
+                if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
+                    if selectedComponent.xScale == 2 {
+                        selectedComponent.position = CGPoint(x: selectedComponent.position.x, y: selectedComponent.position.y - unit/2)
+                        hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
+                    }
+                }
             }
         }
     }
@@ -210,9 +224,14 @@ class GameScene: SKScene {
     func zoomOutSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
             if selectedComponent.zoomOut() {
-                HintRectHelper.zoomOut(hintRect: hintRect)
-                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                if(selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar") {
+                    HintRectHelper.zoomOutForBar(hintRect: hintRect)
+                }
+                else {
+                    HintRectHelper.zoomOut(hintRect: hintRect)
+                }
+//                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+//                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
             }
         }
     }
@@ -220,9 +239,14 @@ class GameScene: SKScene {
     func zoomInSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
             if selectedComponent.zoomIn() {
-                HintRectHelper.zoomIn(hintRect: hintRect)
-                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                if(selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar") {
+                    HintRectHelper.zoomInForBar(hintRect: hintRect)
+                }
+                else {
+                    HintRectHelper.zoomIn(hintRect: hintRect)
+                }
+//                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+//                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
             }
         }
         

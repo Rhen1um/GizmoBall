@@ -34,7 +34,6 @@ class Bar: GameComponent {
         }
         self.position = CGPoint(x: self.position.x - 30, y: self.position.y)
         self.xScale -= 1
-        
         return true
     }
     
