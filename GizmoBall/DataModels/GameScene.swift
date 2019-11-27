@@ -69,6 +69,13 @@ class GameScene: SKScene {
         
     }
     
+    private func inBound(point: CGPoint) -> Bool {
+        if point.x >= -480, point.x <= 480, point.y >= -360, point.y <= 360 {
+            return true
+        }
+        return false
+    }
+    
     override func didMove(to view: SKView) {
         isPlayMode = false
         drawTheGrid()
@@ -100,12 +107,13 @@ class GameScene: SKScene {
     override func mouseDragged(with event: NSEvent) {
         if !isPlayMode {
             if let selectedComponent = self.selectedComponent {
-                selectedComponent.position = event.location(in: self)
-                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                
+                //                selectedComponent.position = event.location(in: self)
+                hintRect.position = convertToHintRectPosition(point: event.location(in: self), size: selectedComponent.xScale)
+                selectedComponent.position = hintRect.position
                 if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
                     if selectedComponent.xScale == 2 {
                         hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
+                        selectedComponent.position = hintRect.position
                     }
                 }
             }
@@ -117,14 +125,23 @@ class GameScene: SKScene {
             if let selectedComponent = self.selectedComponent {
                 let point = event.location(in: self)
                 
+                if(!inBound(point: point)) {
+                    if let position = self.lastPosition {
+                        selectedComponent.changePosition(newPoint: position)
+                        hintRect.position = position
+                    }
+                    return
+                }
+                
                 // 如果拖拽的是三角形
                 if let triangle = selectedComponent as? Triangle {
-                    if let tmpPoints = triangle.getNonTransparentSquares() {
+                    if let tmpPoints = triangle.getNonTransparentSquaresIfPositioned(at: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale)) {
                         for tmpPoint in tmpPoints {
                             selectedComponent.zPosition = -1
                             let detectedNode = self.atPoint(tmpPoint)
                             selectedComponent.zPosition = 1
                             
+                            print(detectedNode.name)
                             if(detectedNode.name != nil) {
                                 if let position = self.lastPosition {
                                     selectedComponent.changePosition(newPoint: position)
@@ -133,15 +150,19 @@ class GameScene: SKScene {
                                 return
                             }
                         }
+                        
+                        lastPosition = nil
+                        selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
+                        hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                        return
                     }
                 }
-                
                 // 如果拖拽进了三角形
                 selectedComponent.zPosition = -1
                 let detectedNode = self.atPoint(point)
                 selectedComponent.zPosition = 0
                 if let triangle = detectedNode as? Triangle {
-                    if !triangle.isTransparent(at: point) {
+                    if !triangle.isTransparent(at: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale)) {
                         if let position = self.lastPosition {
                             selectedComponent.changePosition(newPoint: position)
                             hintRect.position = position
@@ -149,7 +170,7 @@ class GameScene: SKScene {
                         return
                     }
                 }
-                
+                print(detectedNode.name)
                 if detectedNode.name == nil || detectedNode.name == "Triangle" {
                     lastPosition = nil
                     selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
@@ -167,6 +188,7 @@ class GameScene: SKScene {
                     }
                 }
             }
+            
         }
     }
     
@@ -367,6 +389,9 @@ extension GameScene {
     // MARK: Process for dragging
     public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) -> Bool{
         if !isPlayMode{
+            if(!inBound(point: point)) {
+                return false
+            }
             let detectedNode = self.atPoint(point)
             if let triangle = detectedNode as? Triangle {
                 if !triangle.isTransparent(at: point) {

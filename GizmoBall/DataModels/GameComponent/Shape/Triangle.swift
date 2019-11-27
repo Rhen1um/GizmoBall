@@ -43,7 +43,7 @@ class Triangle: GameComponent {
     }
     
     func getTransparentSquares() -> [CGPoint]? {
-        return getNonTransparentSquares(index: self.index)
+        return getTransparentSquares(index: self.index)
     }
     
     private func getTransparentSquares(index: Int) -> [CGPoint]? {
@@ -67,6 +67,9 @@ class Triangle: GameComponent {
         return getNonTransparentSquares(position: newPosition, index: index, scale: self.xScale + 1)
     }
     
+    func getNonTransparentSquaresIfPositioned(at point: CGPoint) -> [CGPoint]? {
+        return getNonTransparentSquares(position: point, index: self.index, scale: self.xScale)
+    }
     
     func getNonTransparentSquares() -> [CGPoint]? {
         return getNonTransparentSquares(index: self.index)
