@@ -51,6 +51,9 @@ class GameScene: SKScene {
     
     var ball: Ball? {
         get {
+            if _ball == nil, let result = self.childNode(withName: "Ball") {
+                _ball = result as? Ball
+            }
             return _ball
         }
         set {
@@ -64,6 +67,7 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        isPlayMode = false
         drawTheGrid()
         // 注册选中提示框
         self.physicsWorld.contactDelegate = self
@@ -78,56 +82,63 @@ class GameScene: SKScene {
     }
     
     override func mouseDown(with event: NSEvent) {
-        guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
-            // TODO: 重新开始游戏后，再次单击物体就会取消选中
-            // 如果没选中，那么不显示选中提示框
-            hintRect.isHidden = true
-            self.selectedComponent = nil
-            return
+        if !isPlayMode {
+            guard let selectedComponent = self.atPoint(event.location(in: self)) as? GameComponent else {
+                // TODO: 重新开始游戏后，再次单击物体就会取消选中
+                // 如果没选中，那么不显示选中提示框
+                cancelSelection()
+                return
+            }
+            self.selectedComponent = selectedComponent
         }
-        self.selectedComponent = selectedComponent
     }
     
     override func mouseDragged(with event: NSEvent) {
-        if let selectedComponent = self.selectedComponent {
-            selectedComponent.position = event.location(in: self)
-            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+        if !isPlayMode {
+            if let selectedComponent = self.selectedComponent {
+                selectedComponent.position = event.location(in: self)
+                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            }
         }
     }
     
     override func mouseUp(with event: NSEvent) {
-        if let selectedComponent = self.selectedComponent {
-            selectedComponent.position = convertToComponentDestinationPosition(point: event.location(in: self), size: selectedComponent.xScale)
-            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+        if !isPlayMode {
+            if let selectedComponent = self.selectedComponent {
+                selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: event.location(in: self), size: selectedComponent.xScale))
+                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            }
         }
     }
     
     override func keyDown(with event: NSEvent) {
-        if (leftBar == nil){
-            leftBar = self.childNode(withName: "LeftBar") as? LeftBar
-        }
-        if (rightBar == nil){
-            rightBar = self.childNode(withName: "RightBar") as? RightBar
-        }
-        switch event.keyCode {
-        case 0x7B:
-            if let rightBar = self.rightBar {
-                rightBar.moveLeft()
+        if isPlayMode {
+            if (leftBar == nil){
+                leftBar = self.childNode(withName: "LeftBar") as? LeftBar
             }
-        case 0x7C:
-            if let rightBar = self.rightBar {
-                rightBar.moveRight()
+            if (rightBar == nil){
+                rightBar = self.childNode(withName: "RightBar") as? RightBar
             }
-        case 0x00:
-            if let leftBar = self.leftBar {
-                leftBar.moveLeft()
+            switch event.keyCode {
+            case 0x7B:
+                if let rightBar = self.rightBar {
+                    rightBar.moveLeft()
+                }
+            case 0x7C:
+                if let rightBar = self.rightBar {
+                    rightBar.moveRight()
+                }
+            case 0x00:
+                if let leftBar = self.leftBar {
+                    leftBar.moveLeft()
+                }
+            case 0x02:
+                if let leftBar = self.leftBar {
+                    leftBar.moveRight()
+                }
+            default:
+                print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
             }
-        case 0x02:
-            if let leftBar = self.leftBar {
-                leftBar.moveRight()
-            }
-        default:
-            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
     }
     
@@ -146,6 +157,8 @@ class GameScene: SKScene {
             pathToDraw.addLine(to: CGPoint(x: x, y: -height))
             myLine.path = pathToDraw
             myLine.strokeColor = .gray
+            // added by JJAYCHEN. 保证线在最后一层
+            myLine.zPosition = -1
             self.addChild(myLine)
         }
         
@@ -156,6 +169,8 @@ class GameScene: SKScene {
             pathToDraw.addLine(to: CGPoint(x: -width, y: y))
             myLine.path = pathToDraw
             myLine.strokeColor = .gray
+            // added by JJAYCHEN. 保证线在最后一层
+            myLine.zPosition = -1
             self.addChild(myLine)
         }
     }
@@ -164,6 +179,7 @@ class GameScene: SKScene {
         if let ball = self.ball {
             ball.enableGravity()
             isPlayMode = true
+            cancelSelection()
         }
     }
     
@@ -193,21 +209,23 @@ class GameScene: SKScene {
     
     func zoomOutSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
-            selectedComponent.zoomOut()
-            HintRectHelper.zoomOut(hintRect: hintRect)
-            selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            if selectedComponent.zoomOut() {
+                HintRectHelper.zoomOut(hintRect: hintRect)
+                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            }
         }
     }
     
     func zoomInSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
-            selectedComponent.zoomIn()
-            HintRectHelper.zoomIn(hintRect: hintRect)
-            selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-            hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            if selectedComponent.zoomIn() {
+                HintRectHelper.zoomIn(hintRect: hintRect)
+                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
+            }
         }
-
+        
     }
     
     func enterPlayMode() {
@@ -217,6 +235,7 @@ class GameScene: SKScene {
     func enterEditMode() {
         // TODO: Don't know how to implement
         isPlayMode = false
+        ball?.restore()
     }
     
     func presentGameOverScene() {
@@ -244,17 +263,35 @@ extension GameScene {
     // MARK: Process for dragging
     public func add(DraggedComponent node: SKSpriteNode, at point: CGPoint) {
         if !isPlayMode {
-            //            if let component = node as? GameComponent {
-            //                component.
-            //            }
-            node.position = point
+            if node.name == "Ball" {
+                if (self.childNode(withName: "Ball") != nil) {
+                    return
+                }
+                node.zPosition = 1
+            }
+            if node.name == "LeftBar", (self.childNode(withName: "LeftBar") != nil) {
+                return
+            }
+            if node.name == "RightBar", (self.childNode(withName: "RightBar") != nil) {
+                return
+            }
+            if let node = node as? GameComponent {
+                node.changePosition(newPoint: point)
+            }
             self.addChild(node)
             self.selectedComponent = node as? GameComponent
         }
     }
+    
+    // MARK: Helper function for selectino
+    func cancelSelection() {
+        hintRect.isHidden = true
+        self.selectedComponent = nil
+    }
 }
 
 extension GameScene : SKPhysicsContactDelegate{
+    // MARK: SKPhysicsContactDelegate
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -273,10 +310,10 @@ extension GameScene : SKPhysicsContactDelegate{
                     ball.changeGravity()
                     print(ball.physicsBody?.affectedByGravity as Any)
                 } else if let node = secondBody.node as? GameComponent{
-                        node.makeAction(with: ball)
-                        if node is Absorber {
-                                self.presentGameOverScene()
-                        }
+                    node.makeAction(with: ball)
+                    if node is Absorber {
+                        self.presentGameOverScene()
+                    }
                 }
             }
         }

@@ -30,7 +30,15 @@ class Ball: GameComponent {
         }
         self.name = "Ball"
     }
-
+    
+    override func zoomIn() -> Bool {
+        return false
+    }
+    
+    override func zoomOut() -> Bool{
+        return false
+    }
+    
     public func enableGravity() {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = true

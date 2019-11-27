@@ -18,20 +18,24 @@ class Bar: GameComponent {
         self.changePositionOnPlay(newPoint: CGPoint(x: self.position.x + 30, y: self.position.y))
     }
     
-    override public func zoomIn() {
+    override public func zoomIn() -> Bool{
         if(self.xScale == 3) {
-            return
+            return false
         }
         self.position = CGPoint(x: self.position.x + 30, y: self.position.y)
         self.xScale += 1
+        
+        return true
     }
        
-    override public func zoomOut() {
+    override public func zoomOut() -> Bool{
         if(self.xScale == 1) {
-            return
+            return false
         }
         self.position = CGPoint(x: self.position.x - 30, y: self.position.y)
         self.xScale -= 1
+        
+        return true
     }
     
 }

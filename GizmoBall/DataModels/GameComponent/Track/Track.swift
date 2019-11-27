@@ -67,6 +67,15 @@ class Track: GameComponent {
         
         
     }
+    
+    override func zoomIn() -> Bool{
+        return false
+    }
+    
+    override func zoomOut() -> Bool{
+        return false
+    }
+    
     override public func makeAction(with ball: Ball) {
         ball.changeGravity()
     }

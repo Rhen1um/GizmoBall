@@ -40,29 +40,33 @@ class GameComponent: SKSpriteNode{
     
     public func restore() {
         self.position = self.nodePosition
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.isDynamic = false
     }
     
     public func nodeRotate() {
         self.zRotation -= CGFloat(Double.pi / 2)
-//        self.zRotation = CGFloat(Double.pi / 2 * 3)
+        print(self.zRotation)
     }
     
-    public func zoomIn() {
+    public func zoomIn() -> Bool{
         if(self.xScale == 3) {
-            return
+            return false
         }
         self.position = CGPoint(x: self.position.x + 30, y: self.position.y + 30)
         self.xScale += 1
         self.yScale += 1
+        return true
     }
     
-    public func zoomOut() { 
+    public func zoomOut() -> Bool{
         if(self.xScale == 1) {
-            return
+            return false
         }
         self.position = CGPoint(x: self.position.x - 30, y: self.position.y - 30)
         self.xScale -= 1
         self.yScale -= 1
+        return true
     }
     
     public func makeAction(with ball: Ball) {

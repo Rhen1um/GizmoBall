@@ -29,6 +29,14 @@ class Absorber: GameComponent {
         self.name = "Absorber"
     }
     
+    override func zoomIn() -> Bool{
+        return false
+    }
+    
+    override func zoomOut() -> Bool{
+        return false
+    }
+    
     override public func makeAction(with ball: Ball) {
         ball.removeFromParent()
     }

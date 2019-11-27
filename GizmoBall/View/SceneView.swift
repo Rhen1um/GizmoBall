@@ -91,12 +91,6 @@ class SceneView: SKView {
                     let componentDestinationPoint = convertToComponentDestinationPosition(point: point)
                     
                     scene.add(DraggedComponent: copied, at: componentDestinationPoint)
-                    // TODO: 如果是 Ball, 设置一下 scene 的 ball 属性.
-                    
-                    let identifier = actionToIdentifier[action]!
-                    if(identifier == "Ball") {
-                        scene.ball = copied as? Ball
-                    }
                     
                     pasteBoard.setString("true", forType: NSPasteboard.PasteboardType(rawValue: "result"))
                 }
