@@ -8,14 +8,14 @@
 
 import Cocoa
 
-class ComponentView: NSImageView {
+class ToolBoxView: NSImageView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
 }
 
 // MARK: - NSDraggingSource
-extension ComponentView: NSDraggingSource {
+extension ToolBoxView: NSDraggingSource {
     func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
         switch context {
         case .outsideApplication:
