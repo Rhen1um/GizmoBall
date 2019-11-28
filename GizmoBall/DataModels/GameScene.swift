@@ -185,19 +185,29 @@ class GameScene: SKScene {
             switch event.keyCode {
             case 0x7B:
                 if let rightBar = self.rightBar {
-                    rightBar.moveLeft()
+                    if inBound(point: CGPoint(x: rightBar.position.x - rightBar.xScale *
+                        (unit / 2), y: rightBar.position.y)){
+                        rightBar.moveLeft()
+                    }
                 }
             case 0x7C:
                 if let rightBar = self.rightBar {
-                    rightBar.moveRight()
+                    if inBound(point: CGPoint(x: rightBar.position.x + rightBar.xScale * (unit / 2), y: rightBar.position.y)){
+                        rightBar.moveRight()
+                    }
                 }
             case 0x00:
                 if let leftBar = self.leftBar {
-                    leftBar.moveLeft()
+                    if inBound(point: CGPoint(x: leftBar.position.x - leftBar.xScale *
+                        (unit / 2) , y: leftBar.position.y)){
+                        leftBar.moveLeft()
+                    }
                 }
             case 0x02:
                 if let leftBar = self.leftBar {
-                    leftBar.moveRight()
+                    if inBound(point: CGPoint(x: leftBar.position.x + leftBar.xScale * (unit / 2), y: leftBar.position.y)) {
+                        leftBar.moveRight()
+                    }
                 }
             default:
                 print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
