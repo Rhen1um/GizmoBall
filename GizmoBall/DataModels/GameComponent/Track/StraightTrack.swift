@@ -26,18 +26,21 @@ class StraightTrack: Track {
         self.init(location: location, texture: SKTexture(imageNamed: "straightTrack"))
         self.name = "StraightTrack"
         super.lineNodes = LineNodes()
-//        self.addChild(super.lineNodes!.leftLine)
-//        self.addChild(super.lineNodes!.rightLine)
+        //        self.addChild(super.lineNodes!.leftLine)
+        //        self.addChild(super.lineNodes!.rightLine)
+        
+        super.lineNodes!.upLine.zPosition = -1
+        super.lineNodes!.downLine.zPosition = -1
         self.addChild(super.lineNodes!.upLine)
         self.addChild(super.lineNodes!.downLine)
         // update
         // 设置line的category为 100， contactMask为 001, collisionMask 为 111
         // 此时Ball 的 category 为 001, contactMask为 110, collisionMask 为 001
         // 此时可以检测到接触，但不会发生碰撞(line的category & Ball的collisionMask == 0)
-//        super.lineNodes?.leftLine.physicsBody?.categoryBitMask = PhysicsCategory.track
-//        super.lineNodes?.leftLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
-//        super.lineNodes?.rightLine.physicsBody?.categoryBitMask = PhysicsCategory.track
-//        super.lineNodes?.rightLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
+        //        super.lineNodes?.leftLine.physicsBody?.categoryBitMask = PhysicsCategory.track
+        //        super.lineNodes?.leftLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
+        //        super.lineNodes?.rightLine.physicsBody?.categoryBitMask = PhysicsCategory.track
+        //        super.lineNodes?.rightLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
         super.lineNodes?.downLine.physicsBody?.categoryBitMask = PhysicsCategory.shape
         super.lineNodes?.downLine.physicsBody?.contactTestBitMask = PhysicsCategory.none
         super.lineNodes?.upLine.physicsBody?.categoryBitMask = PhysicsCategory.shape
@@ -47,6 +50,7 @@ class StraightTrack: Track {
         field.region = SKRegion(size: CGSize(width: unit, height: unit))
         field.isEnabled = true
         field.name = "Field"
+        field.zPosition = -1
         self.addChild(field)
     }
     

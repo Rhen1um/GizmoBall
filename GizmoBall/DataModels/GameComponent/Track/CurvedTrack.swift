@@ -43,6 +43,7 @@ class CurvedTrack: Track {
         field.region = SKRegion(size: CGSize(width: unit, height: unit))
         field.isEnabled = true
         field.name = "Field"
+        field.zPosition = -1
         self.addChild(field)
     }
     
