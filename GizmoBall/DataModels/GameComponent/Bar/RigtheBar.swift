@@ -28,3 +28,12 @@ class RightBar: Bar {
     
 
 }
+
+
+extension RightBar {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+}

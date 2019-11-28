@@ -27,3 +27,11 @@ class Square: GameComponent {
     
 
 }
+
+extension Square {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+}

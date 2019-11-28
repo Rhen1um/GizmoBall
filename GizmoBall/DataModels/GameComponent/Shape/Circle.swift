@@ -22,3 +22,11 @@ class Circle: Shape {
         self.name = "Circle"
     }
 }
+
+extension Circle {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+}

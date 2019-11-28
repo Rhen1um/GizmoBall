@@ -26,3 +26,11 @@ class LeftBar: Bar {
     
 
 }
+
+extension LeftBar {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+}

@@ -21,11 +21,13 @@ class Track: GameComponent {
         let curvedLine: SKShapeNode
         init() {
             splinePoints = [CGPoint(x: -30, y: 30),
-                                CGPoint(x: -30, y: -30)]
+                            CGPoint(x: -30, y: -30)]
             leftLine = SKShapeNode(splinePoints: &splinePoints,
                                      count: splinePoints.count)
-            leftLine.lineWidth = 2
+            leftLine.lineWidth = 0
             leftLine.physicsBody = SKPhysicsBody(edgeChainFrom: leftLine.path!)
+            leftLine.physicsBody?.restitution = 1
+            leftLine.physicsBody?.friction = 0
 //            leftLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: 30, y: 30),
@@ -34,6 +36,8 @@ class Track: GameComponent {
                                     count: splinePoints.count)
             rightLine.lineWidth = 0
             rightLine.physicsBody = SKPhysicsBody(edgeChainFrom: rightLine.path!)
+            rightLine.physicsBody?.restitution = 1
+            rightLine.physicsBody?.friction = 0
 //            rightLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: -30, y: 30),
@@ -42,6 +46,8 @@ class Track: GameComponent {
                                  count: splinePoints.count)
             upLine.lineWidth = 0
             upLine.physicsBody = SKPhysicsBody(edgeChainFrom: upLine.path!)
+            upLine.physicsBody?.restitution = 1
+            upLine.physicsBody?.friction = 0
 //            upLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: -30, y: -30),
@@ -50,6 +56,8 @@ class Track: GameComponent {
                                    count: splinePoints.count)
             downLine.lineWidth = 0
             downLine.physicsBody = SKPhysicsBody(edgeChainFrom: downLine.path!)
+            downLine.physicsBody?.restitution = 1
+            downLine.physicsBody?.friction = 0
 //            downLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: 30, y: 30),
@@ -61,8 +69,10 @@ class Track: GameComponent {
                             CGPoint(x: -30, y: -30)]
             curvedLine = SKShapeNode(splinePoints: &splinePoints,
                                    count: splinePoints.count)
-            curvedLine.lineWidth = 2
+            curvedLine.lineWidth = 0
             curvedLine.physicsBody = SKPhysicsBody(edgeChainFrom: curvedLine.path!)
+            curvedLine.physicsBody?.restitution = 1
+            curvedLine.physicsBody?.friction = 0
 //            downLine.physicsBody?.isDynamic = true
         }
         
