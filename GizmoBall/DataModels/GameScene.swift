@@ -161,7 +161,13 @@ class GameScene: SKScene {
                     lastPosition = nil
                     selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
                     hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                    
+                    // TODO: 之后利用多态?
+                    if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
+                        if selectedComponent.xScale == 2 {
+                            hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
+                            selectedComponent.position = hintRect.position
+                        }
+                    }
                     return
                 }
             }
