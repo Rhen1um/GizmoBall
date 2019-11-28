@@ -10,7 +10,18 @@ import AppKit
 import SpriteKit
 
 class CurvedTrack: Track {
-
+    
+    var _field: SKFieldNode?
+    
+    var field: SKFieldNode? {
+        get {
+            if _field == nil, let fieldNode = self.childNode(withName: "Field") as? SKFieldNode {
+                _field = fieldNode
+            }
+            return _field
+        }
+    }
+    
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "curvedTrack"))
         self.name = "CurvedTrack"
@@ -22,5 +33,27 @@ class CurvedTrack: Track {
         super.lineNodes?.downLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
         super.lineNodes?.rightLine.physicsBody?.categoryBitMask = PhysicsCategory.track
         super.lineNodes?.rightLine.physicsBody?.contactTestBitMask = PhysicsCategory.ball
+        super.lineNodes?.curvedLine.physicsBody?.categoryBitMask = PhysicsCategory.shape
+        super.lineNodes?.curvedLine.physicsBody?.contactTestBitMask = PhysicsCategory.none
+        let gravityVector = vector_float3(0, 9.8, 0)
+        let field = SKFieldNode.linearGravityField(withVector: gravityVector)
+        field.region = SKRegion(size: CGSize(width: unit, height: unit))
+        field.isEnabled = true
+        field.name = "Field"
+        self.addChild(field)
+    }
+    
+    override func nodeRotate() {
+        super.nodeRotate()
+        self.field?.zRotation += CGFloat(Double.pi / 2)
+    }
+    
+}
+
+extension CurvedTrack {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
     }
 }

@@ -18,6 +18,8 @@ class Ball: GameComponent {
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.restitution = 1
+            physics.friction = 0
+            physics.linearDamping = 0
             // new
             physics.isDynamic = false
             physics.categoryBitMask = PhysicsCategory.ball
@@ -53,5 +55,13 @@ class Ball: GameComponent {
     
     public func changeGravity() {
         self.physicsBody?.affectedByGravity = !(self.physicsBody?.affectedByGravity ?? false)
+    }
+}
+
+extension Ball {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
     }
 }

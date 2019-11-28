@@ -66,3 +66,11 @@ class Triangle: GameComponent {
         return false
     }
 }
+
+extension Triangle {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+}

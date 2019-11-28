@@ -41,3 +41,11 @@ class Absorber: GameComponent {
         ball.removeFromParent()
     }
 }
+
+extension Absorber {
+    override static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+}

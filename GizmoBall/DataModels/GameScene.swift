@@ -15,6 +15,7 @@ struct PhysicsCategory {
     static let ball: UInt32 = 0b1
     static let absorber: UInt32 = 0b10
     static let track : UInt32 = 0b100
+    static let shape: UInt32 = 0b1001
 }
 
 
@@ -158,6 +159,7 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
+//        print("ball velocity: \(ball?.physicsBody?.velocity as Any)")
         // Called before each frame is rendered
     }
     
@@ -267,7 +269,8 @@ class GameScene: SKScene {
         let currentScene = self
         let gameoverScene = GameOverScene(size: self.size, scene: currentScene)
         self.view?.presentScene(gameoverScene, transition: reveal)
-        ball?.restore()
+//        ball?.restore()
+        ball = nil
         print("restore")
         leftBar?.restore()
         rightBar?.restore()
@@ -330,14 +333,21 @@ extension GameScene : SKPhysicsContactDelegate{
         
         if (firstBody.categoryBitMask & PhysicsCategory.ball) != 0 {
             if let ball = firstBody.node as? Ball{
-                if let node = secondBody.node as? SKShapeNode{
-                    ball.changeGravity()
-                    print(ball.physicsBody?.affectedByGravity as Any)
-                } else if let node = secondBody.node as? GameComponent{
-                    node.makeAction(with: ball)
-                    if node is Absorber {
+                if (secondBody.node?.physicsBody?.categoryBitMask ?? PhysicsCategory.none)
+                    ^ PhysicsCategory.track == 0{
+//                    print("secondBody: \(secondBody.node?.physicsBody?.categoryBitMask as Any)")
+//                    ball.changeGravity()
+//                    print("gravity: \(ball.physicsBody?.affectedByGravity as Any)")
+                } else if (secondBody.node?.physicsBody?.categoryBitMask ?? PhysicsCategory.none) ^ PhysicsCategory.absorber == 0{
+                    print("absorb")
+                    if let node = secondBody.node as? Absorber{
+                        node.makeAction(with: ball)
                         self.presentGameOverScene()
                     }
+                    
+//                    if secondBody.node is Absorber {
+//                        self.presentGameOverScene()
+//                    }
                 }
             }
         }
