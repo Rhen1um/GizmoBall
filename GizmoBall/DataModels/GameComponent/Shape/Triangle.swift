@@ -35,6 +35,7 @@ class Triangle: GameComponent {
             physics.isDynamic = false
         }
         self.name = "Triangle"
+        super.defaultZPosition = 0.5
     }
     
     override func nodeRotate() {
@@ -59,7 +60,7 @@ class Triangle: GameComponent {
         return nil
     }
     
-    func getNonTransparentSquaresIfZoomIn() -> [CGPoint]? {
+    override func getNonTransparentSquaresIfZoomIn() -> [CGPoint]? {
         if self.xScale == 3 {
             return nil
         }
@@ -67,8 +68,24 @@ class Triangle: GameComponent {
         return getNonTransparentSquares(position: newPosition, index: index, scale: self.xScale + 1)
     }
     
-    func getNonTransparentSquaresIfPositioned(at point: CGPoint) -> [CGPoint]? {
+    override func getNonTransparentSquaresIfRotate() -> [CGPoint]? {
+        return getNonTransparentSquares(position: self.position, index: (index+1)%4, scale: self.xScale)
+    }
+    
+    override func getNonTransparentSquaresIfPositioned(at point: CGPoint) -> [CGPoint]? {
         return getNonTransparentSquares(position: point, index: self.index, scale: self.xScale)
+    }
+    
+    override func getNonTransparentSquareIndexesIfPositioned(at point: CGPoint) -> Set<Int>? {
+        if let squares = getNonTransparentSquaresIfPositioned(at: point) {
+            var set: Set<Int> = Set<Int>()
+            for r in squares {
+                let index = floor(r.x/unit) + floor(r.y/unit)*16
+                set.insert(Int(index))
+            }
+            return set
+        }
+        return nil
     }
     
     func getNonTransparentSquares() -> [CGPoint]? {
@@ -93,10 +110,10 @@ class Triangle: GameComponent {
                 CGPoint(x: position.x + unit*vector[index].x, y: position.y - unit*vector[index].y),
                 CGPoint(x: position.x, y: position.y + unit*vector[index].y),
                 CGPoint(x: position.x - unit*vector[index].x, y: position.y + unit*vector[index].y),
-                CGPoint(x: position.x + unit*vector[index].x, y: position.y - unit*vector[index].y),
+                CGPoint(x: position.x + unit*vector[index].x, y: position.y + unit*vector[index].y),
             ]
         }
-        return nil
+        return [CGPoint(x: position.x, y: position.y)]
     }
     
     func isTransparent(at point: CGPoint) -> Bool {

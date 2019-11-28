@@ -124,7 +124,7 @@ class GameScene: SKScene {
         if !isPlayMode {
             if let selectedComponent = self.selectedComponent {
                 let point = event.location(in: self)
-                
+                let destinationPoint = convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale)
                 if(!inBound(point: point)) {
                     if let position = self.lastPosition {
                         selectedComponent.changePosition(newPoint: position)
@@ -133,62 +133,37 @@ class GameScene: SKScene {
                     return
                 }
                 
-                // 如果拖拽的是三角形
-                if let triangle = selectedComponent as? Triangle {
-                    if let tmpPoints = triangle.getNonTransparentSquaresIfPositioned(at: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale)) {
-                        for tmpPoint in tmpPoints {
-                            selectedComponent.zPosition = -1
-                            let detectedNode = self.atPoint(tmpPoint)
-                            selectedComponent.zPosition = 1
-                            
-                            print(detectedNode.name)
-                            if(detectedNode.name != nil) {
-                                if let position = self.lastPosition {
-                                    selectedComponent.changePosition(newPoint: position)
-                                    hintRect.position = position
+                if let tmpPoints = selectedComponent.getNonTransparentSquaresIfPositioned(at: destinationPoint) {
+                    for tmpPoint in tmpPoints {
+                        selectedComponent.zPosition = -1
+                        let detectedNode = self.atPoint(tmpPoint)
+                        selectedComponent.zPosition = selectedComponent.defaultZPosition
+                        
+                        var oriSet: Set<Int> = Set<Int>()
+                        
+                        let indexCGFloat = floor(tmpPoint.x/unit) + floor(tmpPoint.y/unit)*16
+                        let index = Int(indexCGFloat)
+                        oriSet.insert(index)
+                        
+                        if let detectedComponent = detectedNode as? GameComponent {
+                            if let set = detectedComponent.getNonTransparentSquareIndexesIfPositioned(at: detectedComponent.position) {
+                                if !set.intersection(oriSet).isEmpty {
+                                    if let position = self.lastPosition {
+                                        selectedComponent.changePosition(newPoint: position)
+                                        hintRect.position = position
+                                    }
+                                    return
                                 }
-                                return
                             }
                         }
-                        
-                        lastPosition = nil
-                        selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
-                        hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                        return
                     }
-                }
-                // 如果拖拽进了三角形
-                selectedComponent.zPosition = -1
-                let detectedNode = self.atPoint(point)
-                selectedComponent.zPosition = 0
-                if let triangle = detectedNode as? Triangle {
-                    if !triangle.isTransparent(at: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale)) {
-                        if let position = self.lastPosition {
-                            selectedComponent.changePosition(newPoint: position)
-                            hintRect.position = position
-                        }
-                        return
-                    }
-                }
-                print(detectedNode.name)
-                if detectedNode.name == nil || detectedNode.name == "Triangle" {
                     lastPosition = nil
                     selectedComponent.changePosition(newPoint: convertToComponentDestinationPosition(point: point, size: selectedComponent.xScale))
                     hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                    if selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar" {
-                        if selectedComponent.xScale == 2 {
-                            selectedComponent.position = CGPoint(x: selectedComponent.position.x, y: selectedComponent.position.y - unit/2)
-                            hintRect.position = CGPoint(x: hintRect.position.x, y: hintRect.position.y - unit/2)
-                        }
-                    }
-                } else {
-                    if let position = self.lastPosition {
-                        selectedComponent.changePosition(newPoint: position)
-                        hintRect.position = position
-                    }
+                    
+                    return
                 }
             }
-            
         }
     }
     
@@ -267,19 +242,29 @@ class GameScene: SKScene {
     // MARK: Component Operations
     func rotateSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
-            if let triangle = selectedComponent as? Triangle {
-                if let tmpPoints = triangle.getNonTransparentSquares(index: triangle.index + 1) {
-                    for tmpPoint in tmpPoints {
-                        selectedComponent.zPosition = -1
-                        let detectedNode = self.atPoint(tmpPoint)
-                        selectedComponent.zPosition = 1
-                        
-                        if(detectedNode.name != nil) {
-                            if let position = self.lastPosition {
-                                selectedComponent.changePosition(newPoint: position)
-                                hintRect.position = position
+            if let tmpPoints = selectedComponent.getNonTransparentSquaresIfRotate() {
+                // 得到旋转后的点
+                for tmpPoint in tmpPoints {
+                    selectedComponent.zPosition = -1
+                    let detectedNode = self.atPoint(tmpPoint)
+                    selectedComponent.zPosition = selectedComponent.defaultZPosition
+                    
+                    var oriSet: Set<Int> = Set<Int>()
+                    
+                    let indexCGFloat = floor(tmpPoint.x/unit) + floor(tmpPoint.y/unit)*16
+                    let index = Int(indexCGFloat)
+                    oriSet.insert(index)
+                    
+                    // 旋转后的点是不是检测到了物体，得到物体的点
+                    if let detectedComponent = detectedNode as? GameComponent {
+                        if let set = detectedComponent.getNonTransparentSquareIndexesIfPositioned(at: detectedComponent.position) {
+                            if !set.intersection(oriSet).isEmpty {
+                                if let position = self.lastPosition {
+                                    selectedComponent.changePosition(newPoint: position)
+                                    hintRect.position = position
+                                }
+                                return
                             }
-                            return
                         }
                     }
                 }
@@ -322,24 +307,33 @@ class GameScene: SKScene {
     
     func zoomInSelectedComponent() {
         if let selectedComponent = self.selectedComponent {
-            if let triangle = selectedComponent as? Triangle {
-                if let tmpPoints = triangle.getNonTransparentSquaresIfZoomIn() {
-                    for tmpPoint in tmpPoints {
-                        selectedComponent.zPosition = -1
-                        let detectedNode = self.atPoint(tmpPoint)
-                        selectedComponent.zPosition = 1
-                        
-                        if(detectedNode.name != nil) {
-                            if let position = self.lastPosition {
-                                selectedComponent.changePosition(newPoint: position)
-                                hintRect.position = position
+            if let tmpPoints = selectedComponent.getNonTransparentSquaresIfZoomIn() {
+                // 得到放大后的点
+                for tmpPoint in tmpPoints {
+                    selectedComponent.zPosition = -1
+                    let detectedNode = self.atPoint(tmpPoint)
+                    selectedComponent.zPosition = selectedComponent.defaultZPosition
+                    
+                    var oriSet: Set<Int> = Set<Int>()
+                    
+                    let indexCGFloat = floor(tmpPoint.x/unit) + floor(tmpPoint.y/unit)*16
+                    let index = Int(indexCGFloat)
+                    oriSet.insert(index)
+                    
+                    // 放大后的点是不是检测到了物体，得到物体的点
+                    if let detectedComponent = detectedNode as? GameComponent {
+                        if let set = detectedComponent.getNonTransparentSquareIndexesIfPositioned(at: detectedComponent.position) {
+                            if !set.intersection(oriSet).isEmpty {
+                                if let position = self.lastPosition {
+                                    selectedComponent.changePosition(newPoint: position)
+                                    hintRect.position = position
+                                }
+                                return
                             }
-                            return
                         }
                     }
                 }
             }
-            
             if selectedComponent.zoomIn() {
                 if(selectedComponent.name == "LeftBar" || selectedComponent.name == "RightBar") {
                     HintRectHelper.zoomInForBar(hintRect: hintRect)
@@ -347,11 +341,8 @@ class GameScene: SKScene {
                 else {
                     HintRectHelper.zoomIn(hintRect: hintRect)
                 }
-                //                selectedComponent.position = convertToComponentDestinationPosition(point: selectedComponent.position, size: selectedComponent.xScale)
-                //                hintRect.position = convertToHintRectPosition(point: selectedComponent.position, size: selectedComponent.xScale)
             }
         }
-        
     }
     
     func enterPlayMode() {

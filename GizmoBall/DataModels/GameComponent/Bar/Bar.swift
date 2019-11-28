@@ -37,5 +37,28 @@ class Bar: GameComponent {
         return true
     }
     
+    override func getNonTransparentSquaresIfPositioned(at point: CGPoint) -> [CGPoint]? {
+        return getNonTransparentSquares(position: point, scale: self.xScale)
+    }
+    
+    func getNonTransparentSquares(position: CGPoint, scale: CGFloat) -> [CGPoint]? {
+        if scale == 1 {
+            return [CGPoint(x: position.x, y: position.y)]
+        } else if scale == 2 {
+            return [
+                CGPoint(x: position.x + 0.5*unit, y: position.y),
+                CGPoint(x: position.x - 0.5*unit, y: position.y)
+            ]
+        } else if scale == 3 {
+            return [
+                CGPoint(x: position.x + unit, y: position.y),
+                CGPoint(x: position.x - unit, y: position.y),
+                CGPoint(x: position.x, y: position.y)
+            ]
+        }
+        
+        return nil
+    }
+    
 }
 

@@ -12,6 +12,8 @@ import SpriteKit
 class GameComponent: SKSpriteNode{
     var nodePosition = CGPoint(x: 0, y: 0)
     
+    var defaultZPosition: CGFloat = 1
+    
     convenience init(location: CGPoint, texture: SKTexture) {
         self.init(texture: texture)
         self.size = CGSize(width: unit, height: unit)
@@ -21,12 +23,12 @@ class GameComponent: SKSpriteNode{
         self.nodePosition = self.position
         
         
-//        self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
-//        if let physics = self.physicsBody {
-//            physics.affectedByGravity = false
-//            physics.allowsRotation = false
-//            physics.isDynamic = false
-//        }
+        //        self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
+        //        if let physics = self.physicsBody {
+        //            physics.affectedByGravity = false
+        //            physics.allowsRotation = false
+        //            physics.isDynamic = false
+        //        }
     }
     
     public func changePosition(newPoint: CGPoint) {
@@ -67,6 +69,65 @@ class GameComponent: SKSpriteNode{
         self.xScale -= 1
         self.yScale -= 1
         return true
+    }
+    
+//    func getNonTransparentSquaresIfZoomIn() -> [CGPoint]? {
+//        if self.xScale == 3 {
+//            return nil
+//        }
+//        let newPosition = CGPoint(x: self.position.x + 30, y: self.position.y + 30)
+//        return getNonTransparentSquares(position: newPosition, scale: self.xScale))
+//    }
+    
+    func getNonTransparentSquaresIfPositioned(at point: CGPoint) -> [CGPoint]? {
+        return getNonTransparentSquares(position: point, scale: self.xScale)
+    }
+    
+    func getNonTransparentSquareIndexesIfPositioned(at point: CGPoint) -> Set<Int>? {
+        if let squares = getNonTransparentSquares(position: point, scale: self.xScale) {
+            var set: Set<Int> = Set<Int>()
+            for r in squares {
+                let index = floor(r.x/unit) + floor(r.y/unit)*16
+                set.insert(Int(index))
+            }
+            return set
+        }
+        return nil
+    }
+    
+    func getNonTransparentSquaresIfRotate() -> [CGPoint]?{
+        return getNonTransparentSquares(position: self.position, scale: self.xScale)
+    }
+    
+    func getNonTransparentSquaresIfZoomIn() -> [CGPoint]?{
+        return getNonTransparentSquares(position: self.position, scale: self.xScale)
+    }
+    
+    private func getNonTransparentSquares(position: CGPoint, scale: CGFloat) -> [CGPoint]? {
+        if scale == 1 {
+            return [CGPoint(x: position.x, y: position.y)]
+        } else if scale == 2 {
+            return [
+                CGPoint(x: position.x + 0.5*unit, y: position.y + 0.5*unit),
+                CGPoint(x: position.x + 0.5*unit, y: position.y - 0.5*unit),
+                CGPoint(x: position.x - 0.5*unit, y: position.y + 0.5*unit),
+                CGPoint(x: position.x - 0.5*unit, y: position.y - 0.5*unit),
+            ]
+        } else if scale == 3 {
+            return [
+                CGPoint(x: position.x, y: position.y),
+                CGPoint(x: position.x, y: position.y + unit),
+                CGPoint(x: position.x, y: position.y - unit),
+                CGPoint(x: position.x + unit, y: position.y),
+                CGPoint(x: position.x + unit, y: position.y + unit),
+                CGPoint(x: position.x + unit, y: position.y - unit),
+                CGPoint(x: position.x - unit, y: position.y),
+                CGPoint(x: position.x - unit, y: position.y + unit),
+                CGPoint(x: position.x - unit, y: position.y - unit),
+            ]
+        }
+        
+        return nil
     }
     
     public func makeAction(with ball: Ball) {
