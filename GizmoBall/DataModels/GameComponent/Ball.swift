@@ -53,9 +53,6 @@ class Ball: GameComponent {
         self.physicsBody?.allowsRotation = false
     }
     
-    public func changeGravity() {
-        self.physicsBody?.affectedByGravity = !(self.physicsBody?.affectedByGravity ?? false)
-    }
 }
 
 extension Ball {

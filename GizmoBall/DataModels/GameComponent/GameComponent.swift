@@ -22,13 +22,7 @@ class GameComponent: SKSpriteNode{
         self.position = location
         self.nodePosition = self.position
         
-        
-        //        self.physicsBody = SKPhysicsBody(texture: texture, size: self.size)
-        //        if let physics = self.physicsBody {
-        //            physics.affectedByGravity = false
-        //            physics.allowsRotation = false
-        //            physics.isDynamic = false
-        //        }
+
     }
     
     public func changePosition(newPoint: CGPoint) {
@@ -71,13 +65,7 @@ class GameComponent: SKSpriteNode{
         return true
     }
     
-//    func getNonTransparentSquaresIfZoomIn() -> [CGPoint]? {
-//        if self.xScale == 3 {
-//            return nil
-//        }
-//        let newPosition = CGPoint(x: self.position.x + 30, y: self.position.y + 30)
-//        return getNonTransparentSquares(position: newPosition, scale: self.xScale))
-//    }
+
     
     func getNonTransparentSquaresIfPositioned(at point: CGPoint) -> [CGPoint]? {
         return getNonTransparentSquares(position: point, scale: self.xScale)

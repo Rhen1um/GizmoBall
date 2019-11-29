@@ -88,8 +88,5 @@ class Track: GameComponent {
         return false
     }
     
-    override public func makeAction(with ball: Ball) {
-        ball.changeGravity()
-    }
     
 }
