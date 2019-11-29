@@ -21,7 +21,7 @@
 		5B5DC95923891FE200A55905 /* LeftBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95823891FE200A55905 /* LeftBar.swift */; };
 		5B5DC95B23891FFB00A55905 /* RigtheBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DC95A23891FFB00A55905 /* RigtheBar.swift */; };
 		637B2F39238D15DF00A8AB58 /* DragActionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B2F38238D15DF00A8AB58 /* DragActionHelper.swift */; };
-		639956B52386AE03009D424D /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639956B42386AE03009D424D /* ComponentView.swift */; };
+		639956B52386AE03009D424D /* ToolBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639956B42386AE03009D424D /* ToolBoxView.swift */; };
 		639956B72386B215009D424D /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639956B62386B215009D424D /* SceneView.swift */; };
 		639FBD752385A2D40011D5A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639FBD742385A2D40011D5A2 /* AppDelegate.swift */; };
 		639FBD7D2385A2D40011D5A2 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639FBD7C2385A2D40011D5A2 /* SplitViewController.swift */; };
@@ -48,7 +48,7 @@
 		5B5DC95823891FE200A55905 /* LeftBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBar.swift; sourceTree = "<group>"; };
 		5B5DC95A23891FFB00A55905 /* RigtheBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RigtheBar.swift; sourceTree = "<group>"; };
 		637B2F38238D15DF00A8AB58 /* DragActionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragActionHelper.swift; sourceTree = "<group>"; };
-		639956B42386AE03009D424D /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
+		639956B42386AE03009D424D /* ToolBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBoxView.swift; sourceTree = "<group>"; };
 		639956B62386B215009D424D /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		639FBD712385A2D40011D5A2 /* GizmoBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GizmoBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639FBD742385A2D40011D5A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		635566DB2387EB2C0003A276 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				639956B42386AE03009D424D /* ComponentView.swift */,
+				639956B42386AE03009D424D /* ToolBoxView.swift */,
 				639956B62386B215009D424D /* SceneView.swift */,
 			);
 			path = View;
@@ -289,7 +289,7 @@
 				5B5DC94723891DCD00A55905 /* Absorber.swift in Sources */,
 				5B5DC95323891F6100A55905 /* StraightTrack.swift in Sources */,
 				5B5DC9412389137F00A55905 /* GameComponent.swift in Sources */,
-				639956B52386AE03009D424D /* ComponentView.swift in Sources */,
+				639956B52386AE03009D424D /* ToolBoxView.swift in Sources */,
 				5B5DC95B23891FFB00A55905 /* RigtheBar.swift in Sources */,
 				5B5DC94923891E6700A55905 /* Shape.swift in Sources */,
 				5B5DC94B23891EBE00A55905 /* Circle.swift in Sources */,
@@ -442,7 +442,7 @@
 				CODE_SIGN_ENTITLEMENTS = GizmoBall/GizmoBall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6Q58LP8XS2;
+				DEVELOPMENT_TEAM = XKUVHTJ3W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GizmoBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,7 +463,7 @@
 				CODE_SIGN_ENTITLEMENTS = GizmoBall/GizmoBall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6Q58LP8XS2;
+				DEVELOPMENT_TEAM = XKUVHTJ3W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GizmoBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
