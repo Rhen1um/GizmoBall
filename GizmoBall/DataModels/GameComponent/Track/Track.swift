@@ -10,6 +10,16 @@ import AppKit
 import SpriteKit
 
 class Track: GameComponent {
+    var _field: SKFieldNode?
+    
+    var field: SKFieldNode? {
+        get {
+            if _field == nil, let fieldNode = self.childNode(withName: "Field") as? SKFieldNode {
+                _field = fieldNode
+            }
+            return _field
+        }
+    }
     var lineNodes: LineNodes?
     
     class LineNodes {
@@ -28,7 +38,6 @@ class Track: GameComponent {
             leftLine.physicsBody = SKPhysicsBody(edgeChainFrom: leftLine.path!)
             leftLine.physicsBody?.restitution = 1
             leftLine.physicsBody?.friction = 0
-//            leftLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: 30, y: 30),
                             CGPoint(x: 30, y: -30)]
@@ -38,7 +47,6 @@ class Track: GameComponent {
             rightLine.physicsBody = SKPhysicsBody(edgeChainFrom: rightLine.path!)
             rightLine.physicsBody?.restitution = 1
             rightLine.physicsBody?.friction = 0
-//            rightLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: -30, y: 30),
                             CGPoint(x: 30, y: 30)]
@@ -48,7 +56,6 @@ class Track: GameComponent {
             upLine.physicsBody = SKPhysicsBody(edgeChainFrom: upLine.path!)
             upLine.physicsBody?.restitution = 1
             upLine.physicsBody?.friction = 0
-//            upLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: -30, y: -30),
                             CGPoint(x: 30, y: -30)]
@@ -58,7 +65,6 @@ class Track: GameComponent {
             downLine.physicsBody = SKPhysicsBody(edgeChainFrom: downLine.path!)
             downLine.physicsBody?.restitution = 1
             downLine.physicsBody?.friction = 0
-//            downLine.physicsBody?.isDynamic = true
             
             splinePoints = [CGPoint(x: 30, y: 30),
                             CGPoint(x: 27, y: 30),
@@ -73,11 +79,14 @@ class Track: GameComponent {
             curvedLine.physicsBody = SKPhysicsBody(edgeChainFrom: curvedLine.path!)
             curvedLine.physicsBody?.restitution = 1
             curvedLine.physicsBody?.friction = 0
-//            downLine.physicsBody?.isDynamic = true
         }
         
         
-        
+    }
+    
+    override public func nodeRotate() {
+        super.nodeRotate()
+        self.field?.zRotation += CGFloat(Double.pi / 2)
     }
     
     override func zoomIn() -> Bool{

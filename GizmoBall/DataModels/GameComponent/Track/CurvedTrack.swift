@@ -11,17 +11,6 @@ import SpriteKit
 
 class CurvedTrack: Track {
     
-    var _field: SKFieldNode?
-    
-    var field: SKFieldNode? {
-        get {
-            if _field == nil, let fieldNode = self.childNode(withName: "Field") as? SKFieldNode {
-                _field = fieldNode
-            }
-            return _field
-        }
-    }
-    
     convenience init(location: CGPoint) {
         self.init(location: location, texture: SKTexture(imageNamed: "curvedTrack"))
         self.name = "CurvedTrack"
@@ -47,10 +36,7 @@ class CurvedTrack: Track {
         self.addChild(field)
     }
     
-    override func nodeRotate() {
-        super.nodeRotate()
-        self.field?.zRotation += CGFloat(Double.pi / 2)
-    }
+
     
 }
 
